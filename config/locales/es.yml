@@ -46,6 +46,7 @@ es:
         expression: 'Regexp Freeswitch'
         bill_rate: 'Facturación por unidad'
         bill_minimum: 'Facturación minima'
+        bridge: 'Bridge'
       public_carrier:
         freeswitch_id: 'Freeswitch'
         name: 'Nombre'
@@ -85,6 +86,7 @@ es:
       expression: 'Regexp Freeswitch'
       bill_rate: 'Facturación por unidad'
       bill_minimum: 'Facturación minima'
+      bridge: 'Bridge'
     index:
       title: 'Planes de facturación'
     new:

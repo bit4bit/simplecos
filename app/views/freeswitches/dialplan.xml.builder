@@ -16,8 +16,11 @@ xml.document :type => 'freeswitch/xml' do
               #xml.action :application => 'phrase', :data => 'msgcount,10'
               #xml.action :application => 'sleep', :data => '10000'
               #xml.action :application => 'hangup'
-              xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
-            end
+              unless cash_plan.bridge.empty?
+                xml.action :application => 'bridge', :data => cash_plan.bridge
+              else
+                xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
+              end
           }
         end
       }

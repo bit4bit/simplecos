@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123232717) do
+ActiveRecord::Schema.define(:version => 20121124021319) do
 
   create_table "client_cashes", :force => true do |t|
     t.integer  "client_id"
@@ -73,9 +73,10 @@ ActiveRecord::Schema.define(:version => 20121123232717) do
     t.integer  "public_carrier_id"
     t.string   "expression"
     t.float    "bill_rate"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "bill_minimum",      :default => 0
+    t.string   "bridge",            :default => ""
   end
 
   create_table "roles", :force => true do |t|

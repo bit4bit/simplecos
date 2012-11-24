@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124025804) do
+ActiveRecord::Schema.define(:version => 20121124030103) do
 
   create_table "client_cashes", :force => true do |t|
     t.integer  "client_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121124025804) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "client_cashes", ["client_id"], :name => "index_client_cashes_on_client_id"
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -57,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20121124025804) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "freeswitches", ["ip"], :name => "index_freeswitches_on_ip"
+
   create_table "public_carriers", :force => true do |t|
     t.string   "name"
     t.string   "sip_user"
@@ -69,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20121124025804) do
     t.integer  "freeswitch_id"
   end
 
+  add_index "public_carriers", ["freeswitch_id"], :name => "index_public_carriers_on_freeswitch_id"
+
   create_table "public_cash_plans", :force => true do |t|
     t.integer  "public_carrier_id"
     t.string   "expression"
@@ -78,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20121124025804) do
     t.integer  "bill_minimum",      :default => 0
     t.string   "bridge",            :default => ""
   end
+
+  add_index "public_cash_plans", ["public_carrier_id"], :name => "index_public_cash_plans_on_public_carrier_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

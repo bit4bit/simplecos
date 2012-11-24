@@ -1,0 +1,27 @@
+<h1><%= I18n.t('consumers_request_cash.index.title')%></h1>
+
+<table>
+  <tr>
+    <th><%= I18n.t('consumers_request_cash.l.client')%></th>
+    <th><%= I18n.t('consumers_request_cash.l.amount')%></th>
+    <th><%= I18n.t('consumers_request_cash.l.note')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @consumers_request_cashes.each do |consumers_request_cash| %>
+  <tr>
+    <td><%= consumers_request_cash.client_id %></td>
+    <td><%= consumers_request_cash.amount %></td>
+    <td><%= consumers_request_cash.note %></td>
+    <td><%= link_to I18n.t('show'), consumers_request_cash %></td>
+    <td><%= link_to I18n.t('edit'), edit_consumers_request_cash_path(consumers_request_cash) %></td>
+    <td><%= link_to I18n.t('destroy'), consumers_request_cash, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to I18n.t('consumers_request_cash.new.title'), new_consumers_request_cash_path %>

@@ -1,0 +1,19 @@
+<% if @data['profile'] == 'external' %>
+<% content_for :gateways do %>
+ <% @freeswitch.public_carriers.each do |carrier| %>
+ <gateway name="<%= carrier.name%>">
+  <param name="username" value="<%= carrier.sip_user%>"/>
+  <param name="password" value="<%= carrier.sip_pass%>"/>
+  <param name="register" value="<%= carrier.authenticate%>"/>
+  <param name="realm" value="<%= carrier.ip%>"/>
+</gateway>
+<% end %>
+<% end %>
+<% else %>
+<?xml version="1.0" encoding="utf-8"?>
+<document type="freeswitch/xml">
+  <section name="result">
+    <result status="not found"/>
+  </section>
+</document>
+<% end %>

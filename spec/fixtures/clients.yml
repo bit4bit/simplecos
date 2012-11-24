@@ -1,0 +1,15 @@
+1:
+  id: 1
+  name: Luis
+  balance: 0.0
+  public_carrier_id: 1
+  sip_pass: luis123
+  sip_user: luis
+
+2:
+  id: 2
+  name: Pedra
+  balance: 0.0
+  public_carrier_id: 1
+  sip_pass: pedra
+  sip_user: pedra

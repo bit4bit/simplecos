@@ -1,0 +1,35 @@
+<h1><%= I18n.t('dashboard.index.title')%></h1>
+
+<p>
+  <b><%= I18n.t('client.l.name')%>:</b>
+  <%= current_consumers_client.name%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.sip_user')%>:</b>
+  <%= current_consumers_client.sip_user%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.sip_pass')%>:</b>
+  <%= current_consumers_client.sip_pass%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.sip_server')%>:</b>
+  <%= current_consumers_client.public_carrier.freeswitch.ip%>
+</p>
+<p>
+  <b><%= I18n.t('client.l.email')%>:</b>
+  <%= current_consumers_client.email%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.balance')%>:</b>
+  <%= current_consumers_client.balance%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.total_amount')%>:</b>
+  <%= current_consumers_client.total_amount%>
+</p>

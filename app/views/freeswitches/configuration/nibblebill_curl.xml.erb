@@ -1,0 +1,20 @@
+<configuration name="nibblebill_curl.conf" description="Nibble Billing Curl From SimpleCOS">
+  <settings>
+    <param name="url_lookup" value="<%= bill_url('')%>/${nibble_account}"/>
+    <param name="url_save" value="<%= bill_url('')%>/${nibble_account}"/>
+    <param name="global_heartbeat" value="60"/>
+
+    <!-- By default, warn a caller when their balance is at $5.00. You can set this to a negative number. -->
+    <param name="lowbal_amt" value="5"/>
+    <param name="lowbal_action" value="play ding"/>
+
+    <!-- By default, terminate a caller when their balance hits $0.00. You can set this to a negative number. -->
+    <param name="nobal_amt" value="0"/>
+    <param name="nobal_action" value="hangup"/>
+
+    <!-- If a call goes beyond a certain dollar amount, flag or terminate it -->
+    <param name="percall_max_amt" value="100"/>
+    <param name="percall_action" value="hangup"/>
+
+  </settings>
+</configuration>

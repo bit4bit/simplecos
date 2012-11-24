@@ -1,0 +1,35 @@
+<h1><%= I18n.t('public_carrier.index.title')%></h1>
+
+<table>
+  <tr>
+    <th><%= I18n.t('public_carrier.l.freeswitch')%></th>
+    <th><%= I18n.t('public_carrier.l.name')%></th>
+    <th><%= I18n.t('public_carrier.l.sip_user')%></th>
+    <th><%= I18n.t('public_carrier.l.sip_pass')%></th>
+    <th><%= I18n.t('public_carrier.l.authenticate')%></th>
+    <th><%= I18n.t('public_carrier.l.ip')%></th>
+    <th><%= I18n.t('public_carrier.l.port')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @public_carriers.each do |public_carrier| %>
+  <tr>
+    <td><%= public_carrier.freeswitch.name %></td>
+    <td><%= public_carrier.name %></td>
+    <td><%= public_carrier.sip_user %></td>
+    <td><%= public_carrier.sip_pass %></td>
+    <td><%= public_carrier.authenticate %></td>
+    <td><%= public_carrier.ip %></td>
+    <td><%= public_carrier.port %></td>
+    <td><%= link_to I18n.t('show'), public_carrier %></td>
+    <td><%= link_to I18n.t('edit'), edit_public_carrier_path(public_carrier) %></td>
+    <td><%= link_to I18n.t('destroy'), public_carrier, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to I18n.t('public_carrier.new.title'), new_public_carrier_path %>

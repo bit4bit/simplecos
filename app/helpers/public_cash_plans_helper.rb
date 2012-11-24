@@ -1,0 +1,2 @@
+module PublicCashPlansHelper
+end

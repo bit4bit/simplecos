@@ -1,0 +1,27 @@
+<h1><%= I18n.t('public_cash_plan.index.title')%></h1>
+
+<table>
+  <tr>
+    <th><%= I18n.t('public_cash_plan.l.public_carrier')%></th>
+    <th><%= I18n.t('public_cash_plan.l.expression')%></th>
+    <th><%= I18n.t('public_cash_plan.l.bill_rate')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @public_cash_plans.each do |public_cash_plan| %>
+  <tr>
+    <td><%= public_cash_plan.public_carrier.name %></td>
+    <td><%= public_cash_plan.expression %></td>
+    <td><%= public_cash_plan.bill_rate %></td>
+    <td><%= link_to I18n.t('show'), public_cash_plan %></td>
+    <td><%= link_to I18n.t('edit'), edit_public_cash_plan_path(public_cash_plan) %></td>
+    <td><%= link_to I18n.t('destroy'), public_cash_plan, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to I18n.t('public_cash_plan.new.title'), new_public_cash_plan_path %>

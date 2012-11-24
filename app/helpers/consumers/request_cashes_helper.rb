@@ -1,0 +1,2 @@
+module Consumers::RequestCashesHelper
+end

@@ -1,0 +1,25 @@
+<h1><%= I18n.t('freeswitch.index.title')%></h1>
+
+<table>
+  <tr>
+    <th><%= I18n.t('freeswitch.l.name')%></th>
+    <th><%= I18n.t('freeswitch.l.ip')%></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @freeswitches.each do |freeswitch| %>
+  <tr>
+    <td><%= freeswitch.name %></td>
+    <td><%= freeswitch.ip %></td>
+    <td><%= link_to I18n.t('show'), freeswitch %></td>
+    <td><%= link_to I18n.t('edit'), edit_freeswitch_path(freeswitch) %></td>
+    <td><%= link_to I18n.t('destroy'), freeswitch, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to I18n.t('freeswitch.new.title'), new_freeswitch_path %>

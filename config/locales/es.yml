@@ -1,0 +1,152 @@
+es:
+  show: 'Ver'
+  edit: 'Editar'
+  destroy: 'Eliminar'
+  back: 'Atras'
+  are_you_sure: 'Esta usted seguro(a)?'
+  devise:
+    failure:
+      already_authenticated: 'Ya esta autenticado(a)'
+      user:
+        invalid: 'Correo-E o Contraseña esta invalido'
+  activerecord:
+    models:
+      client: 'Cliente'
+      public_carrier: 'Pasarela Externa'
+      client_cash: 'Cliente Banca'
+      public_cash_plan: 'Plan de facturación'
+      freeswitch: 'Freeswitch'
+      users: 'Usuarixs'
+      consumers_request_cash: 'Petición de recarga'
+    attributes:
+      consumers_request_cash:
+        amount: 'Dinero'
+      user:
+        email: 'Correo-E'
+        password: 'Contraseña'
+        password_confirmation: 'Contraseña Confirmación'
+        remember_me: 'Recordar'
+      freeswitch:
+        name: 'Nombre'
+        ip: 'IP'
+      client:
+        name: 'Nombre'
+        email: 'Correo-E'
+        password: 'Contraseña'
+        password_confirmation: 'Contraseña Confirmación'
+        sip_user: 'Usuarix SIP'
+        sip_pass: 'Contraseña SIP'
+        balance: 'Balance'
+        public_carrier_id: 'Pasarela Externa'
+      client_cash:
+        client_id: 'Cliente'
+        amount: 'Dinero'
+      public_cash_plan:
+        public_carrier_id: 'Pasarela Externa'
+        expression: 'Regexp Freeswitch'
+        bill_rate: 'Facturación por unidad'
+        bill_minimum: 'Facturación minima'
+      public_carrier:
+        freeswitch_id: 'Freeswitch'
+        name: 'Nombre'
+        sip_user: 'Usuario SIP'
+        sip_pass: 'Contraseña SIP'
+        authenticate: 'Autenticar?'
+        ip: 'IP'
+        port: 'Puerto'
+  menu:
+   quit: 'Salir'
+   users: 'Usuarixs'
+   freeswitch: 'Freeswitches'
+   public_carriers: 'Pasarela Externa'
+   public_cash_plans: 'Plan de facturación'
+   clients: 'Clientes'
+   client_cash: 'Clientes Banca'
+   dashboard: 'Estado Actual'
+   request_cash: 'Petición de recarga'
+  public_carrier:
+    l:
+      freeswitch: 'Freeswitch'
+      name: 'Nombre'
+      sip_user: 'Usuario SIP'
+      sip_pass: 'Contraseña SIP'
+      authenticate: 'Autenticar?'
+      ip: 'IP'
+      port: 'Puerto'
+    index:
+      title: 'Listando pasarelas externas'
+    edit:
+      title: 'Editando pasarela externa'
+    new:
+      title: 'Nueva pasarela externa'
+  public_cash_plan:
+    l:
+      public_carrier: 'Pasarela Externa'
+      expression: 'Regexp Freeswitch'
+      bill_rate: 'Facturación por unidad'
+      bill_minimum: 'Facturación minima'
+    index:
+      title: 'Planes de facturación'
+    new:
+      title: 'Nuevo plan de facturación'
+    edit:
+      title: 'Editando plan de facturación'
+    
+  client_cash:
+    l:
+      client: 'Cliente'
+      amount: 'Dinero'
+      approved: 'Aprobar'
+    index:
+      title: 'Banca de clientes'
+    request:
+      title: 'Peticiones de clientes'
+    new:
+      title: 'Nueva Banca de cliente'
+    edit:
+      title: 'Editando Banca de cliente'
+  client:
+    l:
+      name: 'Nombre'
+      sip_user: 'SIP usuarix'
+      sip_pass: 'SIP acceso'
+      public_carrier: 'Pasarela Externa'
+      balance: 'Balance'
+      total_amount: 'Total de recargado'
+      email: 'Correo-E'
+      sip_server: 'SIP servidor'
+    new:
+      title: 'Nuevx cliente'
+    index:
+      title: 'Lista de clientes'
+  freeswitch:
+    l: 
+      name: 'Nombre'
+      ip: 'IP'
+    new:
+      title: 'Nuevo Freeswitch'
+    index:
+      title: 'Listando Freeswitches'
+    edit:
+      title: 'Editando Freeswitch'
+  user:
+    l:
+      sign_in: 'Ingresar'
+      sign_out: 'Salir'
+      sign_up: 'Registrar'
+    sign_in:
+      title: 'Ingresar'
+  dashboard:
+    index:
+      title: 'Estado Actual'
+  consumers_request_cash:
+    l:
+      client: 'Cliente'
+      amount: 'Dinero'
+      note: 'Nota'
+    index:
+      title: 'Lista de peticiones'
+    new:
+      title: 'Nueva Petición de recarga'
+    edit:
+      title: 'Editando Petición de recarga'

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= I18n.t('public_cash_plan.l.public_carrier')%>:</b>
+  <%= @public_cash_plan.public_carrier.name %>
+</p>
+
+<p>
+  <b><%= I18n.t('public_cash_plan.l.expression')%>:</b>
+  <%= @public_cash_plan.expression %>
+</p>
+
+<p>
+  <b><%= I18n.t('public_cash_plan.l.bill_rate')%>:</b>
+  <%= @public_cash_plan.bill_rate %>
+</p>
+
+
+<%= link_to I18n.t('edit'), edit_public_cash_plan_path(@public_cash_plan) %> |
+<%= link_to I18n.t('back'), public_cash_plans_path %>

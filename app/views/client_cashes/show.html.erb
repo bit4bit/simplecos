@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= I18n.t('client_cash.l.client')%>:</b>
+  <%= @client_cash.client.name %>
+</p>
+
+<p>
+  <b><%= I18n.t('client_cash.l.amount')%>:</b>
+  <%= @client_cash.amount %>
+</p>
+
+
+<%= link_to I18n.t('edit'), edit_client_cash_path(@client_cash) %> |
+<%= link_to I18n.t('back'), client_cashes_path %>

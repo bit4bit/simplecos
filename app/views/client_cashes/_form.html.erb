@@ -1,0 +1,25 @@
+<%= form_for(@client_cash) do |f| %>
+  <% if @client_cash.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client_cash.errors.count, "error") %> prohibited this client_cash from being saved:</h2>
+
+      <ul>
+      <% @client_cash.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :client_id %><br />
+    <%= f.select :client_id, options_from_collection_for_select(@clients,'id','name', @client_cash.client_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+1:
+  client_id: 1
+  amount: 100.0
+  
+2:
+  client_id: 2
+  amount: 50.0
+
+3:
+  client_id: 2
+  amount: 70.0

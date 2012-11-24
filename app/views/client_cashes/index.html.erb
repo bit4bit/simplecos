@@ -1,0 +1,49 @@
+<h1><%= I18n.t('client_cash.index.title')%></h1>
+<table>
+  <tr>
+    <td style="vertical-align:top">
+      <h3><%= I18n.t('client_cash.index.title')%></h3>
+      <table>
+	<tr>
+	  <th><%= I18n.t('client_cash.l.client')%></th>
+	  <th><%= I18n.t('client_cash.l.amount')%></th>
+	  <th></th>
+	  <th></th>
+	  <th></th>
+	</tr>
+
+	<% @client_cashes.each do |client_cash| %>
+	<tr>
+	  <td><%= client_cash.client.name %></td>
+	  <td><%= client_cash.amount %></td>
+	  <td><%= link_to I18n.t('show'), client_cash %></td>
+	  <td><%= link_to I18n.t('edit'), edit_client_cash_path(client_cash) %></td>
+	  <td><%= link_to I18n.t('destroy'), client_cash, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
+	</tr>
+	<% end %>
+      </table>
+      <%= link_to I18n.t('client_cash.new.title'), new_client_cash_path %>
+    </td>
+    <td></td>
+    <td style="vertical-align:top">
+      <h3><%= I18n.t('client_cash.request.title')%></h3>
+      <table>
+	<tr>
+	  <th><%= I18n.t('client_cash.l.client')%></th>
+	  <th><%= I18n.t('client_cash.l.amount')%></th>
+	  <th></th>
+	</tr>
+	<% Consumers::RequestCash.all.each do |request_cash|%>
+	<tr>
+	  <td><%= request_cash.client.name%></td>
+	  <td><%= request_cash.amount%></td>
+	  <td><%= link_to I18n.t('client_cash.l.approved'),client_cash_approved_path(request_cash.id), :confirm => 'Are you sure?', :method => :delete%></td>
+	</tr>
+	<% end %>
+    </td>
+
+  </tr>
+</table>
+<br />
+
+

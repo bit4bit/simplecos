@@ -47,7 +47,8 @@ class XmlCdrJob
   def clean_days_of_month_past(account, cdr)
     cdr_file = Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'month_' + time_cdr(cdr).to_s(:cdr_month) + '.csv.gz')
     unless File.exists?(cdr_file)
-      FileUtils.rm  Dir.glob(Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'day_%s_*.csv.gz' % time_cdr(cdr).to_s(:cdr_month)))
+      FileUtils.rm  Dir.glob(Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'day_*.csv.gz'))
+      FileUtils.rm  Dir.glob(Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'week_*.csv.gz'))
       return true
     end
     return false

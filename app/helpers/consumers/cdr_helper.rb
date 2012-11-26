@@ -1,0 +1,2 @@
+module Consumers::CdrHelper
+end

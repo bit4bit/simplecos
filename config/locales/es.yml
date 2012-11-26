@@ -65,6 +65,7 @@ es:
    client_cash: 'Clientes Banca'
    dashboard: 'Estado Actual'
    request_cash: 'Petición de recarga'
+   cdr: 'CDR'
   public_carrier:
     l:
       freeswitch: 'Freeswitch'
@@ -152,3 +153,10 @@ es:
       title: 'Nueva Petición de recarga'
     edit:
       title: 'Editando Petición de recarga'
+  cdr:
+    l:
+      cdr_months: 'Detallado por mes'
+      cdr_days: 'Detallado diario del mes actual'
+      cdr_weeks: 'Detallado de las semanas del mes actual'
+    index:
+      title: 'Detallado de llamadas'

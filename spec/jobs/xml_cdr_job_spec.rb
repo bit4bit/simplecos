@@ -52,36 +52,15 @@ describe XmlCdrJob do
   end
   
   it "should add cdr to day cdrs" do
-    cdr_file = Rails.root.join('test_cdr', '3', '11_2012', 'day_26.csv.gz')
+    cdr_file = Rails.root.join('test_cdr', '3', '11_2012', 'day_11_2012_26.csv.gz')
     File.exists?(cdr_file).should eq(false)
     @j.send(:cdr_day, 3, @cdr)
-    gz = Zlib::GzipReader.new(File.open(cdr_file,'r'))
-    CSV.parse_line(gz.readline).should eq(['account_id',
-                                         'signaling_ip',
-                                         'remote_media_ip',
-                                         'call_time',
-                                         'duration',
-                                         'destination_number',
-                                         'ani',
-                                         'total_amount'
-                                        ])
-    CSV.parse_line(gz.readline).should eq([3,
-                                           '192.168.1.6',
-                                           '192.168.1.6',
-                                           '2012-11-26 08:15:31 -0500',
-                                           4,
-                                           "8888",
-                                           "2000",
-                                           0.6666666666666666
-                                           ])
-                                           
-    gz.close
-    File.exists?(Rails.root.join('test_cdr', '3', '11_2012', 'day_26.csv.gz')).should eq(true)
+    File.exists?(Rails.root.join('test_cdr', '3', '11_2012', 'day_11_2012_26.csv.gz')).should eq(true)
   end
 
   it "should add cdr and read to day cdrs" do
     pending "Not work, but if i cat the file the data is there..what happend??"
-    cdr_file = Rails.root.join('test_cdr', '3', '11_2012', 'day_26.csv.gz')
+    cdr_file = Rails.root.join('test_cdr', '3', '11_2012', 'day_11_2012_26.csv.gz')
     @j.send(:cdr_day, 3, @cdr)
     gz = Zlib::GzipReader.new(File.open(cdr_file,'r'))
     CSV.parse_line(gz.readline).should eq(['account_id',
@@ -119,6 +98,12 @@ describe XmlCdrJob do
     File.exists?(Rails.root.join('test_cdr', '3', '11_2012', 'week_2012_48.csv.gz')).should eq(true)
   end
   
+  
+  it "should clean day of month past" do
+    @j.send(:clean_days_of_month_past, 3, @cdr).should eq(true)
+    @j.send(:cdr_month, 3, @cdr)
+    @j.send(:clean_days_of_month_past, 3, @cdr).should eq(false)
+  end
   
 end
 

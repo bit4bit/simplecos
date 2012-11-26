@@ -17,6 +17,7 @@
 require 'uri'
 require 'zlib'
 require 'csv'
+require 'fileutils'
 
 class XmlCdrJob
   attr_accessor  :xml_cdr, :prefix_dir
@@ -36,13 +37,22 @@ class XmlCdrJob
     Rails.logger.debug(cdr)
     nibble_account = URI.decode(cdr['variables']['nibble_account'])
     create_directories(nibble_account, cdr)
-    
+    clean_days_of_month_past(nibble_account, cdr)
     cdr_day(nibble_account, cdr)
     cdr_week(nibble_account, cdr)
     cdr_month(nibble_account, cdr)
   end
 
   private
+  def clean_days_of_month_past(account, cdr)
+    cdr_file = Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'month_' + time_cdr(cdr).to_s(:cdr_month) + '.csv.gz')
+    unless File.exists?(cdr_file)
+      FileUtils.rm  Dir.glob(Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'day_%s_*.csv.gz' % time_cdr(cdr).to_s(:cdr_month)))
+      return true
+    end
+    return false
+  end
+  
   def create_directories(account, cdr)
     begin Dir.mkdir(Rails.root.join(cdr_dir)) ;rescue; end
     begin Dir.mkdir(Rails.root.join(cdr_dir, account)) ;rescue; end
@@ -91,7 +101,7 @@ class XmlCdrJob
   end
   
   def cdr_day(account, cdr)
-    cdr_file = Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'day_' + time_cdr(cdr).strftime("%d") + ".csv.gz" )
+    cdr_file = Rails.root.join(cdr_dir, account.to_s, time_cdr(cdr).to_s(:cdr_month), 'day_' + time_cdr(cdr).to_s(:cdr_day) + ".csv.gz" )
    cdr_save(account, cdr, cdr_file)
   end
   

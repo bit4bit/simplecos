@@ -182,9 +182,7 @@ class FreeswitchesController < ApplicationController
   #POST /xml_cdr
   def xml_cdr
     authenticate_freeswitch_by_ip
-    logger.debug(params)
-    cdr = (Hash.from_xml params['cdr'])['cdr']
-    print cdr
+    Delayed::Job.enqueue ::XmlCdrJob.new(params['cdr']), :queue => 'xml_cdr'
   end
   
   private

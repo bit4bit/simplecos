@@ -12,26 +12,23 @@ xml.document :type => 'freeswitch/xml' do
       end
       
       @freeswitch.public_carriers.each{|carrier|
-        xml.extension :name => 'simplecos' do
-          carrier.public_cash_plans.each{|cash_plan|
+        carrier.public_cash_plans.each{|cash_plan|
+          xml.extension :name => 'simplecos_%d' % cash_plan.id do
             xml.condition :field => 'destination_number', :expression => cash_plan.expression do
               xml.action :application => 'set', :data => "nibble_rate=#{cash_plan.bill_rate}"
               xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
               if cash_plan.bill_minimum > 0
                 xml.action :application => 'set', :data => "nibble_increment=#{cash_plan.bill_minimum}"
               end
-              #xml.action :application => 'answer'
-              #xml.action :application => 'phrase', :data => 'msgcount,10'
-              #xml.action :application => 'sleep', :data => '10000'
-              #xml.action :application => 'hangup'
+
               if not cash_plan.bridge.empty?
                 xml.action :application => 'bridge', :data => cash_plan.bridge
               else
                 xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
               end
             end
-          }
         end
+        }
       }
     end
   end

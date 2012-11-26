@@ -136,6 +136,22 @@ describe XmlCdrJob do
     @j.send(:calculate_total_amount, cdr).should eq(200)
       
   end
+  
+  it "should calculte amount bill rate 100" do
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "25"}}
+    @j.send(:calculate_total_amount, cdr).should eq(50)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "50"}}
+    @j.send(:calculate_total_amount, cdr).should eq(100)
+    
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "70"}}
+    @j.send(:calculate_total_amount, cdr).should eq(150)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "91"}}
+    @j.send(:calculate_total_amount, cdr).should eq(200)
+      
+  end
 
   
 end

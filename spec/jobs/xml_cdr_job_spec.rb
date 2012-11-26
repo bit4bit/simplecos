@@ -47,7 +47,7 @@ describe XmlCdrJob do
                                              :duration => 4,
                                              :destination_number => "8888",
                                              :ani => "2000",
-                                             :total_amount => 0.6666666666666666
+                                             :total_amount => 5.0
                                            })
   end
   
@@ -104,6 +104,39 @@ describe XmlCdrJob do
     @j.send(:cdr_month, 3, @cdr)
     @j.send(:clean_days_of_month_past, 3, @cdr).should eq(false)
   end
+  
+  it "should calculte amount billaret 10" do
+    cdr = {"variables" => {"simplecos_cash_plan" => "1", "billsec" => "25"}}
+    @j.send(:calculate_total_amount, cdr).should eq(5)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "1", "billsec" => "50"}}
+    @j.send(:calculate_total_amount, cdr).should eq(10)
+    
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "1", "billsec" => "70"}}
+    @j.send(:calculate_total_amount, cdr).should eq(15)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "1", "billsec" => "91"}}
+    @j.send(:calculate_total_amount, cdr).should eq(20)
+      
+  end
+
+ it "should calculte amount bill rate 100" do
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "25"}}
+    @j.send(:calculate_total_amount, cdr).should eq(50)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "50"}}
+    @j.send(:calculate_total_amount, cdr).should eq(100)
+    
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "70"}}
+    @j.send(:calculate_total_amount, cdr).should eq(150)
+
+    cdr = {"variables" => {"simplecos_cash_plan" => "2", "billsec" => "91"}}
+    @j.send(:calculate_total_amount, cdr).should eq(200)
+      
+  end
+
   
 end
 

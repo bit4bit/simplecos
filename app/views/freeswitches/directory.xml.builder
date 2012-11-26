@@ -20,6 +20,7 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                     
                     xml.variables {
                       #xml.variable :name => 'user_context', :value => carrier.context
+                      xml.variable :name => 'simplecos_account', :value => client.id
                       xml.variable :name => 'user_context', :value => 'public'
                       xml.variable :name => 'user_originated', :value => 'true'
                       xml.variable :name => 'toll_allow', :value => 'domestic,international,local'

@@ -1,6 +1,6 @@
 class FreeswitchesController < ApplicationController
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except => [:dialplan, :directory, :configuration, :bill]
+  before_filter :authenticate_user!, :except => [:dialplan, :directory, :configuration, :bill, :xml_cdr]
 
   
   # GET /freeswitches
@@ -130,6 +130,8 @@ class FreeswitchesController < ApplicationController
       configuration_sofia
     elsif @data['section'] == 'configuration' and @data['key_value'] == 'nibblebill_curl.conf'
       configuration_nibblebill_curl
+    elsif @data['section'] == 'configuration' and @data['key_value'] == 'xml_cdr.conf'
+      configuration_xml_cdr
     else
       respond_to do |format|
         format.xml
@@ -146,10 +148,13 @@ class FreeswitchesController < ApplicationController
   end
 
   def configuration_nibblebill_curl
-    render :template => 'freeswitches/configuration/nibblebill_curl'
+    render :template => 'freeswitches/configuration/nibblebill_curl', :layout => 'fsxml/xml_curl'
   end
   
-
+  def configuration_xml_cdr
+    render :template => 'freeswitches/configuration/xml_cdr', :layout => 'fsxml/xml_curl'
+  end
+  
   #GET,POST
   def bill
     authenticate_freeswitch_by_ip
@@ -174,6 +179,13 @@ class FreeswitchesController < ApplicationController
     
   end
 
+  #POST /xml_cdr
+  def xml_cdr
+    authenticate_freeswitch_by_ip
+    logger.debug(params)
+    cdr = (Hash.from_xml params['cdr'])['cdr']
+    print cdr
+  end
   
   private
   def authenticate_freeswitch_by_ip

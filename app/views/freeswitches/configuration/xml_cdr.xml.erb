@@ -1,0 +1,31 @@
+<%
+# Copyright (C) 2012 Bit4Bit <bit4bit@riseup.net>
+#
+#
+# This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%>
+<configuration name="xml_cdr.conf" description="XML CDR CURL logger">
+  <settings>
+    <!-- the url to post to if blank web posting is disabled  -->
+    <param name="url" value="<%= xml_cdr_url%>"/>
+    <param name="retries" value="2"/>
+    <param name="delay" value="1"/>
+    <param name="log-http-and-disk" value="true"/>
+    <param name="log-dir" value=""/>
+    <param name="log-b-leg" value="false"/>
+    <param name="prefix-a-leg" value="true"/>
+    <param name="encode" value="true"/>
+  </settings>
+</configuration>
+

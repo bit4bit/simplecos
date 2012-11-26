@@ -2,6 +2,14 @@ xml.instruct! :xml, :version => '1.0'
 xml.document :type => 'freeswitch/xml' do
   xml.section :name => 'dialplan', :description => 'Dialplan SimpleCOS' do
     xml.context :name => 'public' do
+      xml.extension :name => 'test' do
+        xml.condition :field => 'destination_number', :expression => '8888' do
+          xml.action :application => 'answer'
+          xml.action :application => 'phrase', :data => 'msgcount,10'
+          xml.action :application => 'hangup'
+        end
+      end
+      
       @freeswitch.public_carriers.each{|carrier|
         xml.extension :name => 'simplecos' do
           carrier.public_cash_plans.each{|cash_plan|

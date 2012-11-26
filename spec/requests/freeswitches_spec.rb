@@ -116,5 +116,12 @@ describe "Freeswitches" do
     end
     
   end
-  
+
+  describe "POTS /xml_cdr" do
+    it "should be ok" do
+      post xml_cdr_path
+      response.status.should be(200)
+    end
+  end
+
 end

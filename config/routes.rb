@@ -15,7 +15,7 @@ Simplecos::Application.routes.draw do
   match '/directory' => 'freeswitches#directory', :via => [:post,:get], :format => 'xml'
   match '/configuration' => 'freeswitches#configuration', :via => [:post,:get], :format => 'xml'
   match '/bill/:client' => 'freeswitches#bill', :via => [:post, :get], :format => 'xml', :as => :bill
-
+  match '/xml_cdr' => 'freeswitches#xml_cdr', :via => :post, :format => 'xml', :as => :xml_cdr
   
 
   resources :public_cash_plans

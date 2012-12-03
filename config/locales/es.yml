@@ -38,6 +38,7 @@ es:
         sip_pass: 'Contraseña SIP'
         balance: 'Balance'
         public_carrier_id: 'Pasarela Externa'
+        max_calls: 'Limite de Canales'
       client_cash:
         client_id: 'Cliente'
         amount: 'Dinero'
@@ -118,6 +119,7 @@ es:
       total_amount: 'Total de recargado'
       email: 'Correo-E'
       sip_server: 'SIP servidor'
+      max_calls: 'Limite de Canales'
     new:
       title: 'Nuevx cliente'
     index:

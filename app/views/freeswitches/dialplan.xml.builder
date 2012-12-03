@@ -2,6 +2,26 @@ xml.instruct! :xml, :version => '1.0'
 xml.document :type => 'freeswitch/xml' do
   xml.section :name => 'dialplan', :description => 'Dialplan SimpleCOS' do
     xml.context :name => 'public' do
+      xml.extension :name => 'limit_exceeded' do
+        xml.condition :field => 'destination_number', :expression => '^limit_exceeded$' do
+          xml.action :application => 'playback', :data => 'overthelimit.wav'
+          xml.action :application => 'hangup'
+        end
+      end
+      
+      xml.extension :name => 'limit', :continue => true do
+        xml.condition do
+          xml.action :application => 'limit', :data => 'db $${domain} ${caller_id_number} ${user_data(${caller_id_number}@${domain_name} var max_calls)'
+        end
+      end
+      
+      xml.extension :name => 'hangup' do
+        xml.condition :field => 'destination_number', :expression => '^(hangup)$' do
+          xml.action :application => 'playback', :data => 'no_more_funds.wav'
+          xml.action :application => 'hangup'
+        end
+      end
+      
       xml.extension :name => 'test' do
         xml.condition :field => 'destination_number', :expression => '8888' do
           xml.action :application => 'set', :data => "simplecos_cash_plan=%d" % PublicCashPlan.first.id

@@ -45,6 +45,7 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @carriers = PublicCarrier.all
+    
     @client = Client.new(params[:client])
 
     respond_to do |format|
@@ -61,6 +62,11 @@ class ClientsController < ApplicationController
   # PUT /clients/1
   # PUT /clients/1.json
   def update
+    if params[:client][:password].blank? and params[:client][:password_confirmation].blank?
+      params[:client].delete(:password)
+      params[:client].delete(:password_confirmation)
+    end
+    
     @client = Client.find(params[:id])
     @carriers = PublicCarrier.all
     respond_to do |format|

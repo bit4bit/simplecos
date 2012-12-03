@@ -36,7 +36,8 @@ Recomendaciones
 Freeswitch
 ==========
 
- * Modulos: mod_nibblebill_curl, mod_xml_curl, mod_xml_cdr
+ * Modulos: mod_nibblebill_curl, mod_xml_curl, mod_xml_cdr, mod_limit
+ * Audios: {i18}/overthelimit.wav, {i18n}/no_more_funds.wav
 
 Configuracion
 -------------

@@ -35,6 +35,7 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                       xml.variable :name => 'outbound_caller_id_number', :value => '$${outbound_caller_id_number}'
                       xml.variable :name => 'nibble_account', :value => client.id
                       xml.variable :name => 'nibble_rate', :value => 0.0
+                      xml.variable :name => 'max_calls', :value => client.max_calls
                     }
                   end
                 }

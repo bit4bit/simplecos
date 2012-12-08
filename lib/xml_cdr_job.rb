@@ -65,6 +65,11 @@ class XmlCdrJob
   end
   
   def cdr_to_save(account, cdr)
+    if cdr['variables'].nil?
+      cdr['variables'] = {}
+    end
+    cdr['variables'].merge = {'remote_media_ip' => '', 'billsec' => '0'}
+
     {
       :account_id => account.to_i,
       :signaling_ip => URI.decode(cdr['variables']['sip_network_ip']),

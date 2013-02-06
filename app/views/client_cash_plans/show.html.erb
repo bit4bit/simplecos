@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.client')%>:</b>
+  <%= @client_cash_plan.client.name %>
+</p>
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.public_carrier')%>:</b>
+  <%= @client_cash_plan.public_carrier.name %>
+</p>
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.expression')%>:</b>
+  <%= @client_cash_plan.expression %>
+</p>
+
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.bridge')%>:</b>
+  <%= @client_cash_plan.bridge %>
+</p>
+
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.bill_rate')%>:</b>
+  <%= @client_cash_plan.bill_rate %>
+</p>
+
+<p>
+  <b><%= I18n.t('client_cash_plan.l.bill_minimum')%>:</b>
+  <%= @client_cash_plan.bill_minimum %>
+</p>
+
+
+
+<%= link_to I18n.t('edit'), edit_client_cash_plan_path(@client_cash_plan) %> |
+<%= link_to I18n.t('back'), client_cash_plans_path(:client_id => @client_cash_plan.client_id) %>

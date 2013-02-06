@@ -4,6 +4,8 @@ Simplecos::Application.routes.draw do
 
 
 
+  resources :client_cash_plans
+
   namespace :consumers do resources :request_cashes end
 
   devise_for :users, :controllers => {:registrations => 'users/registrations'}

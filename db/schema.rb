@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206201018) do
+ActiveRecord::Schema.define(:version => 20130206212312) do
+
+  create_table "client_cash_plans", :force => true do |t|
+    t.integer  "client_id"
+    t.string   "expression"
+    t.float    "bill_rate"
+    t.integer  "bill_minimum"
+    t.string   "bridge"
+    t.integer  "public_carrier_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "client_cashes", :force => true do |t|
     t.integer  "client_id"

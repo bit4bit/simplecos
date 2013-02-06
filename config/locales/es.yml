@@ -14,6 +14,7 @@ es:
       client: 'Cliente'
       public_carrier: 'Pasarela Externa'
       client_cash: 'Cliente Banca'
+      client_cash_plan: 'Cliente Plan de fact.'
       public_cash_plan: 'Plan de facturación'
       freeswitch: 'Freeswitch'
       users: 'Usuarixs'
@@ -45,6 +46,13 @@ es:
         client_id: 'Cliente'
         amount: 'Dinero'
       public_cash_plan:
+        public_carrier_id: 'Pasarela Externa'
+        expression: 'Regexp Freeswitch'
+        bill_rate: 'Facturación por unidad'
+        bill_minimum: 'Facturación minima'
+        bridge: 'Bridge'
+      client_cash_plan:
+        client_id: 'Cliente'
         public_carrier_id: 'Pasarela Externa'
         expression: 'Regexp Freeswitch'
         bill_rate: 'Facturación por unidad'
@@ -166,3 +174,17 @@ es:
       cdr_weeks: 'Detallado de las semanas del mes actual'
     index:
       title: 'Detallado de llamadas'
+  client_cash_plan:
+    l:
+      client: 'Cliente'
+      public_carrier: 'Pasarela Externa'
+      expression: 'Regexp Freeswitch'
+      bill_rate: 'Facturación por unidad'
+      bill_minimum: 'Facturación minima'
+      bridge: 'Bridge'
+    new:
+      title: 'Nuevo plan personal'
+    index:
+      title: 'Plan de fact.'
+    edit:
+      title: 'Plan de fact.'

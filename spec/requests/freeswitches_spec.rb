@@ -126,6 +126,23 @@ describe "Freeswitches" do
         end
       end
     end
+
+    it "should return bypass media" do
+      post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
+      response.body.should have_tag('user') do |user|
+        user.should have_tag('params') do |param|
+          param.should have_tag('param', :name => 'inbound-bypass-media', :value => 'false')
+        end
+      end
+      Client.all.each {|client| client.bypass_media = true; client.save(:validate => false)}
+
+      post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
+      response.body.should have_tag('user') do |user|
+        user.should have_tag('params') do |param|
+          param.should have_tag('param', :name => 'inbound-bypass-media', :value => 'true')
+        end
+      end
+    end
     
   end
 

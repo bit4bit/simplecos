@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206194512) do
+ActiveRecord::Schema.define(:version => 20130206201018) do
 
   create_table "client_cashes", :force => true do |t|
     t.integer  "client_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20130206194512) do
     t.string   "last_sign_in_ip"
     t.integer  "max_calls",              :default => 1
     t.boolean  "proxy_media",            :default => false
+    t.boolean  "bypass_media",           :default => false
   end
 
   create_table "consumers_request_cashes", :force => true do |t|

@@ -1,7 +1,7 @@
 require 'digest/sha2'
 
 class Client < ActiveRecord::Base
-  attr_accessible :balance, :name, :public_carrier_id, :sip_pass, :sip_user, :max_calls, :proxy_media
+  attr_accessible :balance, :name, :public_carrier_id, :sip_pass, :sip_user, :max_calls, :proxy_media, :bypass_media
   has_many :client_cashs
   belongs_to :public_carrier
   validates :password, :presence => true, :on => :create

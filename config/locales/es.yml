@@ -40,6 +40,7 @@ es:
         public_carrier_id: 'Pasarela Externa'
         max_calls: 'Limite de Canales'
         proxy_media: 'Proxy Media(RTP)'
+        bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
       client_cash:
         client_id: 'Cliente'
         amount: 'Dinero'
@@ -122,6 +123,7 @@ es:
       sip_server: 'SIP servidor'
       max_calls: 'Limite de Canales'
       proxy_media: 'Proxy Media(RTP)'
+      bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
     new:
       title: 'Nuevx cliente'
     index:

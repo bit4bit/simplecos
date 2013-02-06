@@ -19,7 +19,9 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                       xml.param :name => 'disable-transfer', :value => 'true'
                       xml.param :name => 'log-auth-failures', :value => 'true'
                       #segun: http://wiki.freeswitch.org/wiki/Proxy_Media
+                      #@todo estos dos se excluyen
                       xml.param :name => 'inbound-proxy-media', :value => client.proxy_media
+                      xml.param :name => 'inbound-bypass-media', :value => client.bypass_media
                     }
                     
                     xml.variables {

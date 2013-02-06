@@ -22,21 +22,23 @@ xml.document :type => 'freeswitch/xml' do
         end
       end
       
-      xml.extension :name => 'test' do
-        xml.condition :field => 'destination_number', :expression => '8888' do
-          xml.action :application => 'set', :data => "simplecos_cash_plan=%d" % PublicCashPlan.first.id
-          xml.action :application => 'set', :data => 'nibble_bill_rate=10'
-          xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
-          xml.action :application => 'answer'
-          xml.action :application => 'phrase', :data => 'msgcount,10'
-          xml.action :application => 'hangup'
-        end
-      end
-      
+    
       #cliente, tarificacion personalizada
       #@todo ocurre error cuando hay varios clientes con el mismo nombre
       stop_public_cash_plan = false
       if Client.where(:name => params['Caller-Username']).exists?
+        #se fuerza, el cuelge en caso de no tener fondos
+        #aunque esto se deberia realizar desde *nibblebill_curl*
+        if Client.where(:name => params['Caller-Username']).first.total_amount < 1
+          stop_public_cash_plan = true
+          xml.extension :name => 'hangup_not_fonds' do
+            xml.condition :field => 'destination_number', :expression => '^(.+)$', :break => 'always' do
+              xml.action :application => 'playback', :data => 'no_more_funds.wav'
+              xml.action :application => 'hangup'
+            end
+          end
+        end
+        
         clients = Client.where(:name => params['Caller-Username'])
         ClientCashPlan.where(:client_id => clients).all.each do |client_cash_plan|
           stop_public_cash_plan = true
@@ -46,6 +48,7 @@ xml.document :type => 'freeswitch/xml' do
               xml.action :application => 'set', :data => "simplecos_client_cash_plan=#{client_cash_plan.id}"
               xml.action :application => 'set', :data => "nibble_rate=#{client_cash_plan.bill_rate}"
               xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
+
               if client_cash_plan.bill_minimum > 0
                 xml.action :application => 'set', :data => "nibble_increment=#{client_cash_plan.bill_minimum}"
               end
@@ -59,6 +62,17 @@ xml.document :type => 'freeswitch/xml' do
           end
         end
 
+      end
+      
+  xml.extension :name => 'test' do
+        xml.condition :field => 'destination_number', :expression => '8888' do
+          xml.action :application => 'set', :data => "simplecos_cash_plan=%d" % PublicCashPlan.first.id
+          xml.action :application => 'set', :data => 'nibble_bill_rate=10'
+          xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
+          xml.action :application => 'answer'
+          xml.action :application => 'phrase', :data => 'msgcount,10'
+          xml.action :application => 'hangup'
+        end
       end
       
       @freeswitch.public_carriers.each{|carrier|

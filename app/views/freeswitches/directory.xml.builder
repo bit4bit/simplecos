@@ -18,6 +18,8 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                       xml.param :name => 'dial-string', :value => '{sip_invite_domain=${dialed_domain},presence_id=${dialed_user}@${dialed_domain}}${sofia_contact(${dialed_user}@${dialed_domain})}'
                       xml.param :name => 'disable-transfer', :value => 'true'
                       xml.param :name => 'log-auth-failures', :value => 'true'
+                      #segun: http://wiki.freeswitch.org/wiki/Proxy_Media
+                      xml.param :name => 'inbound-proxy-media', :value => client.proxy_media
                     }
                     
                     xml.variables {

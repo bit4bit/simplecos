@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203161618) do
+ActiveRecord::Schema.define(:version => 20130206194512) do
 
   create_table "client_cashes", :force => true do |t|
     t.integer  "client_id"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(:version => 20121203161618) do
     t.string   "sip_pass"
     t.integer  "public_carrier_id"
     t.float    "balance",                :default => 0.0
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "salt",                   :default => ""
-    t.string   "email",                  :default => "",  :null => false
-    t.string   "encrypted_password",     :default => "",  :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20121203161618) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "max_calls",              :default => 1
+    t.boolean  "proxy_media",            :default => false
   end
 
   create_table "consumers_request_cashes", :force => true do |t|

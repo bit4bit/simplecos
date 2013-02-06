@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe "Freeswitches" do
-  describe "GET /freeswitches" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get freeswitches_path
-      response.status.should be(200)
-    end
-  end
   
   describe "GET /bill" do
     fixtures :freeswitches
@@ -92,6 +85,8 @@ describe "Freeswitches" do
   describe "POST /directory.xml" do
     fixtures :freeswitches
     fixtures :public_carriers
+    fixtures :clients
+
     it "should return xml" do
       post "/directory.xml"
       response.status.should be(200)
@@ -113,6 +108,23 @@ describe "Freeswitches" do
           gateway.should have_tag('param',:name => "register", :value => cr.authenticate.to_s)
         end
       }
+    end
+    
+    it "should return proxy media" do
+      post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
+      response.body.should have_tag('user') do |user|
+        user.should have_tag('params') do |param|
+          param.should have_tag('param', :name => 'inbound-proxy-media', :value => 'false')
+        end
+      end
+      Client.all.each {|client| client.proxy_media = true; client.save(:validate => false)}
+
+      post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
+      response.body.should have_tag('user') do |user|
+        user.should have_tag('params') do |param|
+          param.should have_tag('param', :name => 'inbound-proxy-media', :value => 'true')
+        end
+      end
     end
     
   end

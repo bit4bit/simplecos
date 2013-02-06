@@ -39,6 +39,7 @@ es:
         balance: 'Balance'
         public_carrier_id: 'Pasarela Externa'
         max_calls: 'Limite de Canales'
+        proxy_media: 'Proxy Media(RTP)'
       client_cash:
         client_id: 'Cliente'
         amount: 'Dinero'
@@ -120,6 +121,7 @@ es:
       email: 'Correo-E'
       sip_server: 'SIP servidor'
       max_calls: 'Limite de Canales'
+      proxy_media: 'Proxy Media(RTP)'
     new:
       title: 'Nuevx cliente'
     index:

@@ -29,7 +29,7 @@ xml.document :type => 'freeswitch/xml' do
       if Client.where(:name => params['Caller-Username']).exists?
         #se fuerza, el cuelge en caso de no tener fondos
         #aunque esto se deberia realizar desde *nibblebill_curl*
-        if Client.where(:name => params['Caller-Username']).first.total_amount < 1
+        if Client.where(:name => params['Caller-Username']).first.balance < 1
           stop_public_cash_plan = true
           xml.extension :name => 'hangup_not_fonds' do
             xml.condition :field => 'destination_number', :expression => '^(.+)$', :break => 'always' do

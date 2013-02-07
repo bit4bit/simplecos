@@ -18,7 +18,7 @@ xml.document :type => 'freeswitch/xml' do
       xml.extension :name => 'hangup' do
         xml.condition :field => 'destination_number', :expression => '^(hangup)$' do
           xml.action :application => 'playback', :data => 'no_more_funds.wav'
-          xml.action :application => 'hangup'
+          xml.action :application => 'hangup', :data => 'SERVICE_UNAVAILABLE'
         end
       end
       

@@ -34,14 +34,19 @@ class XmlCdrJob
       cdr = self.xml_cdr['cdr']
     end
     
-    Rails.logger.debug(cdr)
-    nibble_account = URI.decode(cdr['variables']['nibble_account'])
-    create_directories(nibble_account, cdr)
-    clean_days_of_month_past(nibble_account, cdr)
-    cdr_day(nibble_account, cdr)
-    cdr_week(nibble_account, cdr)
-    cdr_month(nibble_account, cdr)
+    begin
+      Rails.logger.debug(cdr)
+      nibble_account = URI.decode(cdr['variables']['nibble_account'])
+      create_directories(nibble_account, cdr)
+      clean_days_of_month_past(nibble_account, cdr)
+      cdr_day(nibble_account, cdr)
+      cdr_week(nibble_account, cdr)
+      cdr_month(nibble_account, cdr)
+    rescue Exception => e
+      Rails.logger.error(e.message)
+    end
   end
+  
 
   private
   def clean_days_of_month_past(account, cdr)

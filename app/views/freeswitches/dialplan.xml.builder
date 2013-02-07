@@ -5,7 +5,7 @@ xml.document :type => 'freeswitch/xml' do
       xml.extension :name => 'limit_exceeded' do
         xml.condition :field => 'destination_number', :expression => '^limit_exceeded$' do
           xml.action :application => 'playback', :data => 'overthelimit.wav'
-          xml.action :application => 'hangup'
+          xml.action :application => 'hangup', :data => 'SERVICE_UNAVAILABLE'
         end
       end
       
@@ -36,7 +36,7 @@ xml.document :type => 'freeswitch/xml' do
           xml.extension :name => 'hangup_not_funds' do
             xml.condition :field => 'destination_number', :expression => '^(.+)$', :break => 'always' do
               xml.action :application => 'playback', :data => 'no_more_funds.wav'
-              xml.action :application => 'hangup'
+              xml.action :application => 'hangup', :data => 'SERVICE_UNAVAILABLE'
             end
           end
         end

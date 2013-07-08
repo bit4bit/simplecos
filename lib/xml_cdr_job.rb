@@ -102,8 +102,9 @@ class XmlCdrJob
     cash_plan = PublicCashPlan.find(cdr['variables']['simplecos_cash_plan'].to_i)
     billsec = cdr['variables']['billsec'].to_d
 
-
-    if cash_plan.bill_minimum > 0 and billsec <= cash_plan.bill_minimum 
+    if billsec == 0
+      return 0
+    elsif cash_plan.bill_minimum > 0 and billsec <= cash_plan.bill_minimum 
       billsec = cash_plan.bill_minimum 
     elsif cash_plan.bill_minimum > 0 and billsec > cash_plan.bill_minimum
       billsec = (billsec / cash_plan.bill_minimum).ceil * cash_plan.bill_minimum

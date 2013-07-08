@@ -73,7 +73,7 @@ class XmlCdrJob
     if cdr['variables'].nil?
       cdr['variables'] = {}
     end
-    cdr['variables'].merge = {'remote_media_ip' => '', 'billsec' => '0'}
+    cdr['variables'].merge({'remote_media_ip' => '', 'billsec' => '0'})
 
     {
       :account_id => account.to_i,

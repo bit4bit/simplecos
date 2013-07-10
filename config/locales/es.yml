@@ -22,6 +22,7 @@ es:
     attributes:
       consumers_request_cash:
         amount: 'Dinero'
+        note: 'Notas'
       user:
         email: 'Correo-E'
         password: 'Contraseña'
@@ -160,7 +161,7 @@ es:
     l:
       client: 'Cliente'
       amount: 'Dinero'
-      note: 'Nota'
+      note: 'Notas'
     index:
       title: 'Lista de peticiones'
     new:

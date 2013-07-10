@@ -17,3 +17,5 @@
 *#
 .#*
 *~
+**.lock
+/db/schema.db

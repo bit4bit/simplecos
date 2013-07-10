@@ -50,8 +50,10 @@ es:
         public_carrier_id: 'Pasarela Externa'
         expression: 'Regexp Freeswitch'
         bill_rate: 'Facturación por unidad'
-        bill_minimum: 'Facturación minima'
+        bill_minimum: 'Facturación minima (seg)'
         bridge: 'Bridge'
+        name: 'Nombre'
+        note: 'Notas'
       client_cash_plan:
         client_id: 'Cliente'
         public_carrier_id: 'Pasarela Externa'
@@ -100,6 +102,8 @@ es:
       bill_rate: 'Facturación por unidad'
       bill_minimum: 'Facturación minima'
       bridge: 'Bridge'
+      name: 'Nombre'
+      note: 'Notas'
     index:
       title: 'Planes de facturación'
     new:

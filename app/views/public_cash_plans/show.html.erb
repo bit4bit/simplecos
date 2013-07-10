@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b><%= I18n.t('public_cash_plan.l.name')%>:</b>
+  <%= @public_cash_plan.name %>
+</p>
+
+<p>
   <b><%= I18n.t('public_cash_plan.l.expression')%>:</b>
   <%= @public_cash_plan.expression %>
 </p>
@@ -18,6 +23,10 @@
   <%= @public_cash_plan.bill_rate %>
 </p>
 
+<p>
+  <b><%= I18n.t('public_cash_plan.l.note')%>:</b>
+  <%= simple_format(@public_cash_plan.note) %>
+</p>
 
 <%= link_to I18n.t('edit'), edit_public_cash_plan_path(@public_cash_plan) %> |
 <%= link_to I18n.t('back'), public_cash_plans_path %>

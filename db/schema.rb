@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206212312) do
+ActiveRecord::Schema.define(:version => 20130710183620) do
 
   create_table "client_cash_plans", :force => true do |t|
     t.integer  "client_id"
@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(:version => 20130206212312) do
     t.datetime "updated_at",                        :null => false
     t.integer  "bill_minimum",      :default => 0
     t.string   "bridge",            :default => ""
+    t.string   "name",              :default => ""
+    t.text     "note",              :default => ""
   end
 
   add_index "public_cash_plans", ["public_carrier_id"], :name => "index_public_cash_plans_on_public_carrier_id"

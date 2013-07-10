@@ -16,6 +16,11 @@
     <%= f.select :public_carrier_id,options_from_collection_for_select(@carriers, 'id', 'name', @public_cash_plan.public_carrier_id)%>
   </div>
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
     <%= f.label :expression %><br />
     <%= f.text_field :expression %>
   </div>
@@ -30,6 +35,10 @@
   <div class="field">
     <%= f.label :bill_minimum %><br />
     <%= f.text_field :bill_minimum %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
   </div>
   <div class="actions">
     <%= f.submit %>

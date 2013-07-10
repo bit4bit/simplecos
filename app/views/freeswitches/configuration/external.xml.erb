@@ -5,7 +5,7 @@
   <param name="username" value="<%= carrier.sip_user%>"/>
   <param name="password" value="<%= carrier.sip_pass%>"/>
   <param name="register" value="<%= carrier.authenticate%>"/>
-  <param name="realm" value="<%= carrier.ip%>"/>
+  <param name="realm" value="<%= carrier.ip%><%= carrier.port > 0 ? ":"+carrier.port.to_s : "5060"%>"/>
 </gateway>
 <% end %>
 <% end %>

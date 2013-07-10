@@ -17,6 +17,10 @@
     <%= f.hidden_field :client_id, :value => @client_cash_plan.client_id%>
   </div>
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name%>
+  </div>
+  <div class="field">
     <%= f.label :public_carrier_id %><br />
     <%= f.select :public_carrier_id, options_from_collection_for_select(PublicCarrier.all, 'id','name', @client_cash_plan.public_carrier_id) %>
   </div>
@@ -38,6 +42,10 @@
     <%= f.number_field :bill_minimum %>
   </div>
 
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note%>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

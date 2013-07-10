@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710183620) do
+ActiveRecord::Schema.define(:version => 20130710210845) do
 
   create_table "client_cash_plans", :force => true do |t|
     t.integer  "client_id"
@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(:version => 20130710183620) do
     t.integer  "bill_minimum"
     t.string   "bridge"
     t.integer  "public_carrier_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "name",              :default => ""
+    t.text     "note",              :default => ""
   end
 
   create_table "client_cashes", :force => true do |t|

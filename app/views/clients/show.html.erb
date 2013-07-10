@@ -4,7 +4,10 @@
   <b><%= I18n.t('client.l.name')%>:</b>
   <%= @client.name %>
 </p>
-
+<p>
+  <b><%= I18n.t('client.l.email')%>:</b>
+  <%= @client.email %>
+</p>
 <p>
   <b><%= I18n.t('client.l.sip_user')%>:</b>
   <%= @client.sip_user %>
@@ -28,6 +31,13 @@
 <p>
   <b><%= I18n.t('client.l.max_calls')%>:</b>
   <%= @client.max_calls%>
+</p>
+
+<p>
+  <b><%= I18n.t('client.l.mode_media')%>:</b>
+  <%= @client.proxy_media ? I18n.t('client.l.proxy_media') : '' %>
+  <%= @client.bypass_media ? I18n.t('client.l.bypass_media') : '' %>
+  <%= !@client.proxy_media and !@client.bypass_media ? I18n.t('default') : '' %>
 </p>
 <%= link_to I18n.t('edit'), edit_client_path(@client) %> |
 <%= link_to I18n.t('back'), clients_path %>

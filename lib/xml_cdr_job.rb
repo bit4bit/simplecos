@@ -99,18 +99,30 @@ class XmlCdrJob
   end
   
   def calculate_total_amount(cdr)
-    cash_plan = PublicCashPlan.find(cdr['variables']['simplecos_cash_plan'].to_i)
+    bill_rate = 0
+    bill_minimum = 0
+    begin
+      cash_plan = ClientCashPlan.find(cdr['variables']['simplecos_client_cash_plan'].to_i)
+      bill_rate = cash_plan.bill_rate
+      bill_minimum = cash_plan.bill_minimum
+    rescue ActiveRecord::RecordNotFound
+      cash_plan = PublicCashPlan.find(cdr['variables']['simplecos_cash_plan'].to_i)
+      bill_rate = cash_plan.bill_rate
+      bill_minimum = cash_plan.bill_minimum
+    end
+    
+      
     billsec = cdr['variables']['billsec'].to_d
 
     if billsec == 0
       return 0
-    elsif cash_plan.bill_minimum > 0 and billsec <= cash_plan.bill_minimum 
-      billsec = cash_plan.bill_minimum 
-    elsif cash_plan.bill_minimum > 0 and billsec > cash_plan.bill_minimum
-      billsec = (billsec / cash_plan.bill_minimum).ceil * cash_plan.bill_minimum
+    elsif bill_minimum > 0 and billsec <= bill_minimum 
+      billsec = bill_minimum 
+    elsif bill_minimum > 0 and billsec > bill_minimum
+      billsec = (billsec / bill_minimum).ceil * bill_minimum
     end
     
-    (cash_plan.bill_rate * billsec) / 60 #@todo el cobro donde esta la unidad de cobro??
+    (bill_rate * billsec) / 60 #@todo el cobro donde esta la unidad de cobro??
   end
   
   def create_header(cdr_file, header)

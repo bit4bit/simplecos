@@ -4,9 +4,13 @@ es:
   destroy: 'Eliminar'
   back: 'Atras'
   are_you_sure: 'Esta usted seguro(a)?'
+  default: 'Por defecto'
   devise:
     failure:
       already_authenticated: 'Ya esta autenticado(a)'
+      consumers_client:
+        unauthenticated: 'Sin autenticar'
+        invalid: 'Correo-E o Contraseña esta invalido'
       user:
         invalid: 'Correo-E o Contraseña esta invalido'
   activerecord:
@@ -137,6 +141,7 @@ es:
       max_calls: 'Limite de Canales'
       proxy_media: 'Proxy Media(RTP)'
       bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
+      mode_media: 'Media'
     new:
       title: 'Nuevx cliente'
     index:

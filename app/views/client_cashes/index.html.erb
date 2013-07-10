@@ -31,13 +31,14 @@
 	<tr>
 	  <th><%= I18n.t('client_cash.l.client')%></th>
 	  <th><%= I18n.t('client_cash.l.amount')%></th>
-	  <th></th>
+	  <th></th><th></th>
 	</tr>
 	<% Consumers::RequestCash.all.each do |request_cash|%>
 	<tr>
 	  <td><%= request_cash.client.nil? ? "" : request_cash.client.name%></td>
 	  <td><%= request_cash.amount%></td>
 	  <td><%= link_to I18n.t('client_cash.l.approved'),client_cash_approved_path(request_cash.id), :confirm => 'Are you sure?', :method => :delete%></td>
+	  <td><%= link_to I18n.t('destroy'), client_cash_dismiss_path(request_cash), :method => :delete%></td>
 	</tr>
 	<% end %>
     </td>

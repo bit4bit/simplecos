@@ -95,4 +95,15 @@ class ClientCashesController < ApplicationController
     end
   end
 
+  #DELETE
+  def dismiss
+    @consumers_request_cash = Consumers::RequestCash.find(params[:client_cash_id])
+    @consumers_request_cash.destroy
+
+    respond_to do |format|
+      format.html { redirect_to client_cashes_path }
+      format.json { head :no_content }
+    end
+  end
+  
 end

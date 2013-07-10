@@ -3,6 +3,7 @@ es:
   edit: 'Editar'
   destroy: 'Eliminar'
   back: 'Atras'
+  clone: 'Clonar'
   are_you_sure: 'Esta usted seguro(a)?'
   default: 'Por defecto'
   devise:

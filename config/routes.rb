@@ -4,7 +4,9 @@ Simplecos::Application.routes.draw do
 
 
 
-  resources :client_cash_plans
+  resources :client_cash_plans do
+    get "clone"
+  end
 
   namespace :consumers do resources :request_cashes end
 
@@ -30,6 +32,7 @@ Simplecos::Application.routes.draw do
 
   resources :client_cashes do
     delete 'approved'
+    delete 'dismiss'
   end
   
 
@@ -84,7 +87,7 @@ Simplecos::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'consumers/consumer#index'
+  root :to => 'freeswitches#index'
 
   # See how all your routes lay out with "rake routes"
 

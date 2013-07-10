@@ -131,7 +131,7 @@ es:
       sip_pass: 'SIP acceso'
       public_carrier: 'Pasarela Externa'
       balance: 'Balance'
-      total_amount: 'Total de recargado'
+      total_amount: 'Historia total recargado'
       email: 'Correo-E'
       sip_server: 'SIP servidor'
       max_calls: 'Limite de Canales'

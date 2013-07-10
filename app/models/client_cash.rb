@@ -1,7 +1,7 @@
 class ClientCash < ActiveRecord::Base
   attr_accessible :amount, :client_id
   validates :client_id, :presence => true
-  validates :amount, :numericality => true
+  validates :amount, :numericality => {:only_integer => true}
   belongs_to :client
 
   before_update :save_last_amount

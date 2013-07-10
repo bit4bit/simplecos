@@ -14,7 +14,7 @@
 
 	<% @client_cashes.each do |client_cash| %>
 	<tr>
-	  <td><%= client_cash.client.name %></td>
+	  <td><%= client_cash.client.nil? ? "" : client_cash.client.name %></td>
 	  <td><%= client_cash.amount %></td>
 	  <td><%= link_to I18n.t('show'), client_cash %></td>
 	  <td><%= link_to I18n.t('edit'), edit_client_cash_path(client_cash) %></td>
@@ -35,7 +35,7 @@
 	</tr>
 	<% Consumers::RequestCash.all.each do |request_cash|%>
 	<tr>
-	  <td><%= request_cash.client.name%></td>
+	  <td><%= request_cash.client.nil? ? "" : request_cash.client.name%></td>
 	  <td><%= request_cash.amount%></td>
 	  <td><%= link_to I18n.t('client_cash.l.approved'),client_cash_approved_path(request_cash.id), :confirm => 'Are you sure?', :method => :delete%></td>
 	</tr>

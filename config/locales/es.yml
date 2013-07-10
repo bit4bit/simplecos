@@ -203,3 +203,6 @@ es:
       title: 'Plan de fact.'
     edit:
       title: 'Plan de fact.'
+  email:
+    balance_out_email:
+      subject: 'Sin balance'

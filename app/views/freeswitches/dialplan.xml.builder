@@ -27,11 +27,11 @@ xml.document :type => 'freeswitch/xml' do
       #@todo ocurre error cuando hay varios clientes con el mismo nombre
 
       stop_public_cash_plan = false
-      #@todo es correcto usar Caller-Username??
-      if Client.where(:sip_user => params['Caller-Username']).exists?
+      simplecos_account = params['variable_simplecos_account']
+      if Client.exists?(simplecos_account)
         #se fuerza, el cuelge en caso de no tener fondos
         #aunque esto se deberia realizar desde *nibblebill_curl*
-        if Client.where(:sip_user => params['Caller-Username']).first.balance < 1
+        if Client.find(simplecos_account).balance < 1
           stop_public_cash_plan = true
           xml.extension :name => 'hangup_not_funds' do
             xml.condition :field => 'destination_number', :expression => '^(.+)$', :break => 'always' do
@@ -41,7 +41,7 @@ xml.document :type => 'freeswitch/xml' do
           end
         end
         
-        clients = Client.where(:sip_user => params['Caller-Username'])
+        clients = Client.find(simplecos_account)
         ClientCashPlan.where(:client_id => clients).all.each do |client_cash_plan|
           stop_public_cash_plan = true
           xml.extension :name => 'simplecos_%d_client' % client_cash_plan.public_carrier_id do

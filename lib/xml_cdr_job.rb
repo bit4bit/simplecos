@@ -20,6 +20,8 @@ require 'csv'
 require 'fileutils'
 
 class XmlCdrJob
+  SEGUNDOS_COBRO_BASE = 60
+
   attr_accessor  :xml_cdr, :prefix_dir
   def initialize(xml_cdr, prefix_dir ='')
     self.xml_cdr = xml_cdr
@@ -44,6 +46,7 @@ class XmlCdrJob
       cdr_month(nibble_account, cdr)
     rescue Exception => e
       Rails.logger.error(e.message)
+      Rails.logger.error(e.backtrace)
     end
   end
   
@@ -77,12 +80,12 @@ class XmlCdrJob
 
     {
       :account_id => account.to_i,
-      :signaling_ip => URI.decode(cdr['variables']['sip_network_ip']),
-      :remote_media_ip => URI.decode(cdr['variables']['remote_media_ip']),
+      :signaling_ip => URI.decode(cdr['variables']['sip_network_ip'].to_s),
+      :remote_media_ip => URI.decode(cdr['variables']['remote_media_ip'].to_s),
       :call_time => Time.at(URI.decode(cdr['variables']['start_epoch']).to_d).to_s,
-      :duration => URI.decode(cdr['variables']['billsec']).to_i,
-      :destination_number => URI.decode(cdr['callflow']['caller_profile']['destination_number']),
-      :ani => URI.decode(cdr['callflow']['caller_profile']['ani']),
+      :duration => URI.decode(cdr['variables']['billsec'].to_s).to_i,
+      :destination_number => URI.decode(cdr['callflow']['caller_profile']['destination_number'].to_s),
+      :ani => URI.decode(cdr['callflow']['caller_profile']['ani'].to_s),
       :total_amount => calculate_total_amount(cdr)
     }
   end
@@ -102,11 +105,11 @@ class XmlCdrJob
     bill_rate = 0
     bill_minimum = 0
     begin
-      cash_plan = ClientCashPlan.find(cdr['variables']['simplecos_client_cash_plan'].to_i)
+      cash_plan = ClientCashPlan.find(URI.decode(cdr['variables']['simplecos_client_cash_plan'].to_s).to_i)
       bill_rate = cash_plan.bill_rate
       bill_minimum = cash_plan.bill_minimum
     rescue ActiveRecord::RecordNotFound
-      cash_plan = PublicCashPlan.find(cdr['variables']['simplecos_cash_plan'].to_i)
+      cash_plan = PublicCashPlan.find(URI.decode(cdr['variables']['simplecos_cash_plan'].to_s).to_i)
       bill_rate = cash_plan.bill_rate
       bill_minimum = cash_plan.bill_minimum
     end
@@ -122,7 +125,7 @@ class XmlCdrJob
       billsec = (billsec / bill_minimum).ceil * bill_minimum
     end
     
-    (bill_rate * billsec) / 60 #@todo el cobro donde esta la unidad de cobro??
+    (bill_rate * billsec) / SEGUNDOS_COBRO_BASE #@todo el cobro donde esta la unidad de cobro??
   end
   
   def create_header(cdr_file, header)

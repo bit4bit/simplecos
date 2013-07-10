@@ -60,7 +60,7 @@ class ClientCashesController < ApplicationController
   # PUT /client_cashes/1.json
   def update
     @client_cash = ClientCash.find(params[:id])
-
+    @clients = Client.all
     respond_to do |format|
       if @client_cash.update_attributes(params[:client_cash])
         format.html { redirect_to @client_cash, notice: 'Client cash was successfully updated.' }

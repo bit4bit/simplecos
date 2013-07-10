@@ -25,7 +25,7 @@ Caracteristicas Clientes
 ==========
 
  * Peticion de recarga, consumo
- * CDR diario, semanal y mensual. (aun no implementado)
+ * CDR diario, semanal y mensual.
  * Ultimas 10 llamadas. (aun no implementado)
 
 Recomendaciones

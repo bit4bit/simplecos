@@ -32,6 +32,13 @@ Recomendaciones
 ==============
 
  * You must ensure that the "accept-blind-reg" parameter is set to "false" in sofia.conf.xml, otherwise your web application will not get called. 
+ 
+ 
+Demonios
+--------
+
+  * iniciar scripts/delayed_jobs  para CDR
+  * iniciar rake daemon:monitor:start para el monitoreo de las cuentas clientes
 
 Freeswitch
 ==========
@@ -43,3 +50,5 @@ Configuracion
 -------------
  * Activar modulo mod_xml_curl, configurar para que apunte a: app/dialplan.xml, app/directory.xml, app/configuration.xml
  * compilar y activar modulo mod_nibblebill_curl, configurar: url_lookup => app/bill/${nibble_account}, url_save => app/bill/${nibble_account}
+ 
+

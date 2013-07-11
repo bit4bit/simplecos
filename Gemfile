@@ -43,4 +43,6 @@ gem "cancan"
 gem "rails-i18n"
 gem "delayed_job_active_record"
 gem "daemons"
+gem "daemons-rails"
+gem "celluloid"
 gem 'will_paginate', '>= 3.0.pre'

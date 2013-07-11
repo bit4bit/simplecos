@@ -206,3 +206,5 @@ es:
   email:
     balance_out_email:
       subject: 'Sin balance'
+    balance_in_email:
+      subject: 'De nuevo con balance'

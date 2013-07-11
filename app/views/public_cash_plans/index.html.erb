@@ -12,7 +12,7 @@
 
 <% @public_cash_plans.each do |public_cash_plan| %>
   <tr>
-    <td><%= public_cash_plan.public_carrier.name %></td>
+    <td><%= public_cash_plan.public_carrier.nil? ? "" : public_cash_plan.public_carrier.name %></td>
     <td><%=  public_cash_plan.name.empty? ? public_cash_plan.expression : public_cash_plan.name; %>
     </td>
     <td><%= public_cash_plan.bill_rate %></td>

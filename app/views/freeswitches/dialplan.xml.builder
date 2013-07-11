@@ -27,7 +27,20 @@ xml.document :type => 'freeswitch/xml' do
       #@todo ocurre error cuando hay varios clientes con el mismo nombre
 
       stop_public_cash_plan = false
-      simplecos_account = params['variable_simplecos_account']
+      #@todo no llega la variable en algunos servidores
+      #simplecos_account = params['variable_simplecos_account']
+      begin
+        client = Client.where(:sip_user => params['variable_sip_from_user']).select(:id).first
+        if client
+          simplecos_account = client.id
+        else
+          simplecos_account = 0
+        end
+      rescue Exception => e
+        simplecos_account = 0
+      end
+      
+
       if Client.exists?(simplecos_account)
         #se fuerza, el cuelge en caso de no tener fondos
         #aunque esto se deberia realizar desde *nibblebill_curl*

@@ -55,6 +55,7 @@ describe "Freeswitches" do
   
   describe "POST /configuration.xml" do
     fixtures :freeswitches 
+    fixtures :sip_profiles
     fixtures :public_carriers
 
     it "should be ok" do
@@ -62,6 +63,52 @@ describe "Freeswitches" do
       response.status.should be(200)
     end
 
+    context "configuration sofia.conf" do
+      it "should be ok" do
+        post "/configuration", {:section => 'configuration', :key_value => 'sofia.conf'}
+        response.body.should have_tag("section") do |section|
+          section.should have_tag("result", "status" => "not found")
+        end
+        
+      end
+      
+      it "should return xml not response" do
+        post "/configuration", {:section => 'configuration', :key_value => 'sofia.conf'}
+        response.status.should be(200)
+      end
+
+      it "should return xml" do
+        post "/configuration", {:section => 'configuration', :key_value => 'sofia.conf', 'FreeSWITCH-IPv4' => '127.0.0.1'}
+        response.body.should have_tag("profiles")
+      end
+
+      it "should return xml with profiles" do
+        post "/configuration", {:section => 'configuration', :key_value => 'sofia.conf', 'FreeSWITCH-IPv4' => '127.0.0.1'}
+        print response.body
+        freeswitch = Freeswitch.find_by_ip('127.0.0.1')
+        response.body.should have_tag("profiles") do |profiles|
+          freeswitch.sip_profiles.each do |sip_profile|
+            profiles.should have_tag("profile", :name => sip_profile.name) do |profile|
+              profile.should have_tag("gateways") do |gateways|
+                sip_profile.public_carriers.each do |public_carrier|
+                  gateways.should have_tag("gateway") do |gateway|
+                    gateway.should have_tag("param", :name => "username", :value => public_carrier.sip_user.to_s)
+                    gateway.should have_tag("param", :name => "password", :value => public_carrier.sip_pass.to_s)
+                    gateway.should have_tag("param", :name => "realm", :value => public_carrier.realm)
+                  end
+                end
+              end
+              profile.should have_tag("settings") do |settings|
+                settings.should have_tag("param", :name => "sip-port", :value => sip_profile.sip_port.to_s)
+                settings.should have_tag("param", :name => "sip-ip", :value => sip_profile.sip_ip.to_s)
+                settings.should have_tag("param", :name => "rtp-ip", :value => sip_profile.rtp_ip.to_s)
+              end
+            end
+          end #sip_profile
+        end
+      end
+    end
+    
     context "configuration nibblebill_curl.conf" do
       
       it "should be ok" do
@@ -100,13 +147,15 @@ describe "Freeswitches" do
     it "should return gateway" do
       post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'purpose' => 'gateways', 'profile'=>'external'}
       #print response.body
-      Freeswitch.find_by_ip('127.0.0.1').public_carriers.each{|cr|
-        response.body.should have_tag("gateway", :name => cr.name) do |gateway|
-          gateway.should have_tag('param',:name => "password", :value => cr.sip_pass.to_s)
-          gateway.should have_tag('param',:name => "username", :value => cr.sip_user.to_s)
-          gateway.should have_tag('param',:name => "realm", :value => cr.ip.to_s)
-          gateway.should have_tag('param',:name => "register", :value => cr.authenticate.to_s)
-        end
+      Freeswitch.find_by_ip('127.0.0.1').sip_profiles.each{|sip_profile|
+        sip_profile.public_carriers.each{|cr|
+          response.body.should have_tag("gateway", :name => cr.name) do |gateway|
+            gateway.should have_tag('param',:name => "password", :value => cr.sip_pass.to_s)
+            gateway.should have_tag('param',:name => "username", :value => cr.sip_user.to_s)
+            gateway.should have_tag('param',:name => "realm", :value => cr.ip.to_s)
+            gateway.should have_tag('param',:name => "register", :value => cr.authenticate.to_s)
+          end
+        }
       }
     end
     

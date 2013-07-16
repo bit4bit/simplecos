@@ -7,42 +7,44 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
           xml.groups do
             xml.group :name => "default" do
               xml.users do
-              @freeswitch.public_carriers.each do |carrier|
-                @clients.each {|client|
-
-                  next unless client.public_carrier == carrier
-                  xml.user :id => client.sip_user do
-                    xml.params {
-                      xml.param :name => 'a1-hash', :value => Digest::MD5.hexdigest('%s:%s:%s' % [client.sip_user, @freeswitch.ip, client.sip_pass])
-                      
-                      xml.param :name => 'dial-string', :value => '{sip_invite_domain=${dialed_domain},presence_id=${dialed_user}@${dialed_domain}}${sofia_contact(${dialed_user}@${dialed_domain})}'
-                      xml.param :name => 'disable-transfer', :value => 'true'
-                      xml.param :name => 'log-auth-failures', :value => 'true'
-                      #segun: http://wiki.freeswitch.org/wiki/Proxy_Media
-                      #@todo estos dos se excluyen
-                      xml.param :name => 'inbound-proxy-media', :value => client.proxy_media
-                      xml.param :name => 'inbound-bypass-media', :value => client.bypass_media
-                    }
+              @freeswitch.sip_profiles.each do |sip_profile|
+                sip_profile.public_carriers.each do |carrier|
+                  @clients.each {|client|
                     
-                    xml.variables {
-                      #xml.variable :name => 'user_context', :value => carrier.context
-                      xml.variable :name => 'simplecos_account', :value => client.id
-                      xml.variable :name => 'user_context', :value => 'public'
-                      xml.variable :name => 'user_originated', :value => 'true'
-                      xml.variable :name => 'toll_allow', :value => 'domestic,international,local'
-                      xml.variable :name => 'sip-allow-multiple-registrations', :value => 'false'
-                      xml.variable :name => 'default_gateway', :value => client.public_carrier.name
-                      xml.variable :name => 'accountcode', :value => client.accountcode
-                      xml.variable :name => 'effective_caller_id_number', :value => client.sip_user
-                      xml.variable :name => 'effective_caller_id_name', :value => client.name
-                      xml.variable :name => 'outbound_caller_id_name', :value => '$${outbound_caller_name}'
-                      xml.variable :name => 'outbound_caller_id_number', :value => '$${outbound_caller_id_number}'
-                      xml.variable :name => 'nibble_account', :value => client.id
-                      xml.variable :name => 'nibble_rate', :value => 0.0
-                      xml.variable :name => 'max_calls', :value => client.max_calls
-                    }
+                    next unless client.public_carrier == carrier
+                    xml.user :id => client.sip_user do
+                      xml.params {
+                        xml.param :name => 'a1-hash', :value => Digest::MD5.hexdigest('%s:%s:%s' % [client.sip_user, @freeswitch.ip, client.sip_pass])
+                        
+                        xml.param :name => 'dial-string', :value => '{sip_invite_domain=${dialed_domain},presence_id=${dialed_user}@${dialed_domain}}${sofia_contact(${dialed_user}@${dialed_domain})}'
+                        xml.param :name => 'disable-transfer', :value => 'true'
+                        xml.param :name => 'log-auth-failures', :value => 'true'
+                        #segun: http://wiki.freeswitch.org/wiki/Proxy_Media
+                        #@todo estos dos se excluyen
+                        xml.param :name => 'inbound-proxy-media', :value => client.proxy_media
+                        xml.param :name => 'inbound-bypass-media', :value => client.bypass_media
+                      }
+                      
+                      xml.variables {
+                        #xml.variable :name => 'user_context', :value => carrier.context
+                        xml.variable :name => 'simplecos_account', :value => client.id
+                        xml.variable :name => 'user_context', :value => 'public'
+                        xml.variable :name => 'user_originated', :value => 'true'
+                        xml.variable :name => 'toll_allow', :value => 'domestic,international,local'
+                        xml.variable :name => 'sip-allow-multiple-registrations', :value => 'false'
+                        xml.variable :name => 'default_gateway', :value => client.public_carrier.name
+                        xml.variable :name => 'accountcode', :value => client.accountcode
+                        xml.variable :name => 'effective_caller_id_number', :value => client.sip_user
+                        xml.variable :name => 'effective_caller_id_name', :value => client.name
+                        xml.variable :name => 'outbound_caller_id_name', :value => '$${outbound_caller_name}'
+                        xml.variable :name => 'outbound_caller_id_number', :value => '$${outbound_caller_id_number}'
+                        xml.variable :name => 'nibble_account', :value => client.id
+                        xml.variable :name => 'nibble_rate', :value => 0.0
+                        xml.variable :name => 'max_calls', :value => client.max_calls
+                      }
+                    end
+                  }
                   end
-                }
                 end
               end
           end

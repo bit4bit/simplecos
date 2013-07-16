@@ -106,28 +106,33 @@ xml.document :type => 'freeswitch/xml' do
 #      end
    
       
-      @freeswitch.public_carriers.each{|carrier|
-        break if stop_public_cash_plan
-        carrier.public_cash_plans.each{|cash_plan|
-          xml.extension :name => 'simplecos_%d' % cash_plan.id do
-            xml.condition :field => 'destination_number', :expression => cash_plan.expression do
-              #no se usa pero se envia por si algo
-              xml.action :application => 'set', :data => "simplecos_cash_plan=#{cash_plan.id}"
-              xml.action :application => 'set', :data => "nibble_rate=#{cash_plan.bill_rate}"
-              xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
-              if cash_plan.bill_minimum > 0
-                xml.action :application => 'set', :data => "nibble_increment=#{cash_plan.bill_minimum}"
-              end
-
-              if not cash_plan.bridge.empty?
-                xml.action :application => 'bridge', :data => cash_plan.bridge
-              else
-                xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
+      @freeswitch.sip_profiles.each{|sip_profile|
+        sip_profile.public_carriers.each{|carrier|
+          break if stop_public_cash_plan
+          carrier.public_cash_plans.each{|cash_plan|
+            xml.extension :name => 'simplecos_%d' % cash_plan.id do
+              xml.condition :field => 'destination_number', :expression => cash_plan.expression do
+                #no se usa pero se envia por si algo
+                xml.action :application => 'set', :data => "simplecos_cash_plan=#{cash_plan.id}"
+                xml.action :application => 'set', :data => "nibble_rate=#{cash_plan.bill_rate}"
+                xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
+                if cash_plan.bill_minimum > 0
+                  xml.action :application => 'set', :data => "nibble_increment=#{cash_plan.bill_minimum}"
+                end
+                
+                if not cash_plan.bridge.empty?
+                  xml.action :application => 'bridge', :data => cash_plan.bridge
+                else
+                  xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
+                end
               end
             end
-        end
+          }
         }
       }
+
+
     end
+
   end
 end

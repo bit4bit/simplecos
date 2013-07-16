@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @sip_profile.name %>
+</p>
+
+<p>
+  <b>Inbound codec:</b>
+  <%= @sip_profile.inbound_codec %>
+</p>
+
+<p>
+  <b>Outbound codec:</b>
+  <%= @sip_profile.outbound_codec %>
+</p>
+
+<p>
+  <b>Rtp ip:</b>
+  <%= @sip_profile.rtp_ip %>
+</p>
+
+<p>
+  <b>Sip ip:</b>
+  <%= @sip_profile.sip_ip %>
+</p>
+
+<p>
+  <b>Sip port:</b>
+  <%= @sip_profile.sip_port %>
+</p>
+
+<p>
+  <b>Freeswitch:</b>
+  <%= @sip_profile.freeswitch.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_sip_profile_path(@sip_profile) %> |
+<%= link_to 'Back', sip_profiles_path %>

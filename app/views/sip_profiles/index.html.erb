@@ -1,0 +1,35 @@
+<h1>Listing sip_profiles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Inbound codec</th>
+    <th>Outbound codec</th>
+    <th>Rtp ip</th>
+    <th>Sip ip</th>
+    <th>Sip port</th>
+    <th>Freeswitch</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sip_profiles.each do |sip_profile| %>
+  <tr>
+    <td><%= sip_profile.name %></td>
+    <td><%= sip_profile.inbound_codec %></td>
+    <td><%= sip_profile.outbound_codec %></td>
+    <td><%= sip_profile.rtp_ip %></td>
+    <td><%= sip_profile.sip_ip %></td>
+    <td><%= sip_profile.sip_port %></td>
+    <td><%= sip_profile.freeswitch.name %></td>
+    <td><%= link_to 'Show', sip_profile %></td>
+    <td><%= link_to 'Edit', edit_sip_profile_path(sip_profile) %></td>
+    <td><%= link_to 'Destroy', sip_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sip profile', new_sip_profile_path %>

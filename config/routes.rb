@@ -4,6 +4,8 @@ Simplecos::Application.routes.draw do
 
 
 
+  resources :sip_profiles
+
   resources :client_cash_plans do
     get "clone"
   end

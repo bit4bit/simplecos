@@ -77,6 +77,7 @@ es:
         authenticate: 'Autenticar?'
         ip: 'IP'
         port: 'Puerto'
+        sip_profile_id: 'Perfil SIP'
   menu:
    quit: 'Salir'
    users: 'Usuarixs'
@@ -88,6 +89,7 @@ es:
    dashboard: 'Estado Actual'
    request_cash: 'Petición de recarga'
    cdr: 'CDR'
+   sip_profiles: 'Perfiles SIP'
   public_carrier:
     l:
       freeswitch: 'Freeswitch'
@@ -97,6 +99,7 @@ es:
       authenticate: 'Autenticar?'
       ip: 'IP'
       port: 'Puerto'
+      sip_profile: 'Perfil SIP'
     index:
       title: 'Listando pasarelas externas'
     edit:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716195618) do
+ActiveRecord::Schema.define(:version => 20130716221129) do
 
   create_table "client_cash_plans", :force => true do |t|
     t.integer  "client_id"
@@ -101,9 +101,10 @@ ActiveRecord::Schema.define(:version => 20130716195618) do
     t.boolean  "authenticate"
     t.string   "ip"
     t.integer  "port"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "freeswitch_id"
+    t.integer  "sip_profile_id"
   end
 
   add_index "public_carriers", ["freeswitch_id"], :name => "index_public_carriers_on_freeswitch_id"
@@ -132,6 +133,20 @@ ActiveRecord::Schema.define(:version => 20130716195618) do
     t.integer "role_id"
     t.integer "user_id"
   end
+
+  create_table "sip_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "inbound_codec"
+    t.string   "outbound_codec"
+    t.string   "rtp_ip"
+    t.string   "sip_ip"
+    t.integer  "sip_port"
+    t.integer  "freeswitch_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "sip_profiles", ["freeswitch_id"], :name => "index_sip_profiles_on_freeswitch_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

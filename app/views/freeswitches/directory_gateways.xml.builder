@@ -5,12 +5,14 @@ xml.instruct! :xml, :version => '1.0'
 if @data['purpose'] == 'gateways' and @data['profile'] == 'external'
   xml.document :type => 'freeswitch/xml' do
     xml.section :name => 'directory' do
-      @freeswitch.public_carriers.each do |carrier|
-        xml.gateway :name => carrier.name do
-          xml.param :name => 'username', :value => carrier.sip_user
-          xml.param :name => 'password', :value => carrier.sip_pass
-          xml.param :name => 'register', :value => carrier.authenticate
-          xml.param :name => 'realm', :value => carrier.ip
+      @freeswitch.sip_profiles.each do |sip_profile| 
+        sip_profile.public_carriers.each do |carrier|
+          xml.gateway :name => carrier.name do
+            xml.param :name => 'username', :value => carrier.sip_user
+            xml.param :name => 'password', :value => carrier.sip_pass
+            xml.param :name => 'register', :value => carrier.authenticate
+            xml.param :name => 'realm', :value => carrier.ip
+          end
         end
       end #carriers
     end #xml.sectien

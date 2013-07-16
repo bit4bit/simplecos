@@ -126,7 +126,9 @@ class FreeswitchesController < ApplicationController
     authenticate_freeswitch_by_ip
     @freeswitch = Freeswitch.find_by_ip(params['FreeSWITCH-IPv4'])
     @data = params
+
     if @data['section'] == 'configuration' and @data['key_value'] == 'sofia.conf'
+      return render :template => 'freeswitches/not_response' if @freeswitch.nil?
       configuration_sofia
     elsif @data['section'] == 'configuration' and @data['key_value'] == 'nibblebill_curl.conf'
       configuration_nibblebill_curl
@@ -140,13 +142,9 @@ class FreeswitchesController < ApplicationController
   end
   
   def configuration_sofia
-    if @data['profile'] == 'external' 
-      render :template => 'freeswitches/configuration/external',  :layout => 'fsxml/sofia_conf'
-    else
-      render :template => 'freeswitches/not_response'
-    end
+    render :template => 'freeswitches/configuration/gateways', :layout => 'fsxml/sofia_conf'
   end
-
+  
   def configuration_nibblebill_curl
     render :template => 'freeswitches/configuration/nibblebill_curl', :layout => 'fsxml/xml_curl'
   end

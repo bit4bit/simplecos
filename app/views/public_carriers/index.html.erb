@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th><%= I18n.t('public_carrier.l.freeswitch')%></th>
+    <th><%= I18n.t('public_carrier.l.sip_profile')%></th>
     <th><%= I18n.t('public_carrier.l.name')%></th>
     <th><%= I18n.t('public_carrier.l.sip_user')%></th>
     <th><%= I18n.t('public_carrier.l.sip_pass')%></th>
@@ -16,7 +16,7 @@
 
 <% @public_carriers.each do |public_carrier| %>
   <tr>
-    <td><%= public_carrier.freeswitch.name %></td>
+    <td><%= public_carrier.sip_profile ? public_carrier.sip_profile.name : "" %></td>
     <td><%= public_carrier.name %></td>
     <td><%= public_carrier.sip_user %></td>
     <td><%= public_carrier.sip_pass %></td>

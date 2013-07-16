@@ -1,0 +1,45 @@
+<%= simple_form_for(@sip_profile) do |f| %>
+  <% if @sip_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sip_profile.errors.count, "error") %> prohibited this sip_profile from being saved:</h2>
+
+      <ul>
+      <% @sip_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.association :freeswitch %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :inbound_codec %><br />
+    <%= f.text_field :inbound_codec %>
+  </div>
+  <div class="field">
+    <%= f.label :outbound_codec %><br />
+    <%= f.text_field :outbound_codec %>
+  </div>
+  <div class="field">
+    <%= f.label :rtp_ip %><br />
+    <%= f.text_field :rtp_ip %>
+  </div>
+  <div class="field">
+    <%= f.label :sip_ip %><br />
+    <%= f.text_field :sip_ip %>
+  </div>
+  <div class="field">
+    <%= f.label :sip_port %><br />
+    <%= f.number_field :sip_port %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

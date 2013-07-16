@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby1.9.1
 
+if ENV["RAILS_ENV"] != "test"
+
+
 # You might want to change this
 ENV["RAILS_ENV"] ||= "development"
 
@@ -77,4 +80,6 @@ while($running) do
   Rails.logger.info "This daemon is still running at #{Time.now}.\n"
   
   sleep 300
+end
+
 end

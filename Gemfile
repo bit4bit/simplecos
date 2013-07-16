@@ -36,6 +36,7 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+gem "simple_form"
 gem "rspec-rails"
 gem "webrat"
 gem "devise"

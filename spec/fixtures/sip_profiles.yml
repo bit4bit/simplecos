@@ -1,0 +1,15 @@
+1:
+  id: 1
+  name: Internal
+  rtp_ip: 172.16.1.200
+  sip_ip: 172.16.1.200
+  sip_port: 172.16.1.200
+  freeswitch_id: 1
+
+2:
+  id: 2
+  name: Internal
+  rtp_ip: 172.16.1.200
+  sip_ip: 172.16.1.200
+  sip_port: 172.16.1.200
+  freeswitch_id: 3

@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :accountcode %><br />
+    <%= f.text_field :accountcode, {:readonly => true} %>
+  </div>
+
+  <div class="field">
     <%= f.label :public_carrier_id %><br />
     <%= f.select :public_carrier_id, options_from_collection_for_select(@carriers, 'id', 'name', @client.public_carrier_id) %>
   </div>

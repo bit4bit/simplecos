@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b><%= I18n.t('client.l.accountcode')%>:</b>
+  <%= @client.accountcode%>
+</p>
+<p>
   <b><%= I18n.t('client.l.name')%>:</b>
   <%= @client.name %>
 </p>

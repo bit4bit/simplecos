@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th><%= I18n.t('client.l.accountcode')%></th>
     <th><%= I18n.t('client.l.public_carrier')%></th>
     <th><%= I18n.t('client.l.name')%></th>
     <th><%= I18n.t('client.l.sip_user')%></th>
@@ -14,6 +15,7 @@
 
 <% @clients.each do |client| %>
   <tr>
+    <td><%= client.accountcode%></td>
     <td><%= client.public_carrier.name if client.public_carrier %></td>
     <td><%= client.name %></td>
     <td><%= client.sip_user %></td>

@@ -48,6 +48,7 @@ es:
         max_calls: 'Limite de Canales'
         proxy_media: 'Proxy Media(RTP)'
         bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
+        accountcode: 'Codigo de cuenta'
       client_cash:
         client_id: 'Cliente'
         amount: 'Dinero'
@@ -145,6 +146,7 @@ es:
       proxy_media: 'Proxy Media(RTP)'
       bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
       mode_media: 'Media'
+      accountcode: 'Codigo de cuenta'
     new:
       title: 'Nuevx cliente'
     index:

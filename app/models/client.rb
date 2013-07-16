@@ -1,7 +1,10 @@
 require 'digest/sha2'
 
 class Client < ActiveRecord::Base
-  attr_accessible :balance, :name, :public_carrier_id, :sip_pass, :sip_user, :max_calls, :proxy_media, :bypass_media
+  MAX_RANDOM_ACCOUNTCODE = 1000000
+
+  attr_accessible :balance, :name, :public_carrier_id, :sip_pass, :sip_user, :max_calls, :proxy_media, :bypass_media, :accountcode
+
   has_many :client_cashs, :dependent => :destroy
   has_many :client_cash_plans, :dependent => :destroy
 
@@ -12,6 +15,7 @@ class Client < ActiveRecord::Base
   validates :name, :presence => true
   validates :public_carrier_id, :presence => true, :numericality => true
   validates :max_calls, :presence => true, :numericality => true
+  validates :accountcode, uniqueness: true
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -22,4 +26,5 @@ class Client < ActiveRecord::Base
     client_cashs.all.each{|cc| total += cc.amount}
     total
   end
+  
 end

@@ -27,7 +27,13 @@ class ClientsController < ApplicationController
   # GET /clients/new
   # GET /clients/new.json
   def new
-    @client = Client.new
+    #Se genera accountcode automatico
+    accountcode = rand(Client::MAX_RANDOM_ACCOUNTCODE)
+    while(Client.where(:accountcode => accountcode).exists?)
+      accountcode = rand(Client::MAX_RANDOM_ACCOUNTCODE)
+    end
+
+    @client = Client.new(:accountcode => accountcode)
     @carriers = PublicCarrier.all
     respond_to do |format|
       format.html # new.html.erb

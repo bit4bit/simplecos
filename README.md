@@ -7,6 +7,18 @@ tiene la capacidad de administrar multiples terminales freeswitch
 por medio del modulo xml_curl y mod_nibble_curl para tarificacion
 remota.
 
+16 JULIO 2013
+=============
+Nuevas modificaciones.
+ * AccountCode por cuenta para gestion de la tarificacion.
+ * Pasarela externa maneja troncales y distribuibles con mod_distributor
+ * Conecta a FS atraves de mod_event_socket.
+ 
+FUTURO
+======
+ * Autoencaminamiento de bajao costo (mod_lcr)
+ * Cuenta reseller
+ 
 Caracteristicas
 ==============
 

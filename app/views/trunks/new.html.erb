@@ -2,4 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', trunks_path %>
+<%= link_to I18n.t('back'), trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>

@@ -76,10 +76,11 @@ class TrunksController < ApplicationController
   # DELETE /trunks/1.json
   def destroy
     @trunk = Trunk.find(params[:id])
+    public_carrier_id = @trunk.public_carrier.id
     @trunk.destroy
 
     respond_to do |format|
-      format.html { redirect_to trunks_url }
+      format.html { redirect_to trunks_url(:public_carrier_id => public_carrier_id)  }
       format.json { head :no_content }
     end
   end

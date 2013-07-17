@@ -24,10 +24,16 @@ es:
       freeswitch: 'Freeswitch'
       users: 'Usuarixs'
       consumers_request_cash: 'Petición de recarga'
+      trunk: 'Troncal'
     attributes:
       consumers_request_cash:
         amount: 'Dinero'
         note: 'Notas'
+      trunk:
+        name: 'Nombre'
+        ip: 'IP'
+        port: 'Puerto'
+        authenticate: 'Autenticar?'
       user:
         email: 'Correo-E'
         password: 'Contraseña'

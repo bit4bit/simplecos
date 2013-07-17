@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @trunk %> |
-<%= link_to 'Back', trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>
+<%= link_to I18n.t('show'), @trunk %> |
+<%= link_to I18n.t('back'), trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>

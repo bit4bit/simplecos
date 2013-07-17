@@ -41,5 +41,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_trunk_path(@trunk) %> |
-<%= link_to 'Back', trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>
+<%= link_to I18n.t('edit'), edit_trunk_path(@trunk) %> |
+<%= link_to I18n.t('back'), trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>

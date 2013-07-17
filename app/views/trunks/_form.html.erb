@@ -1,0 +1,57 @@
+<%= simple_form_for(@trunk) do |f| %>
+  <% if @trunk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trunk.errors.count, "error") %> prohibited this trunk from being saved:</h2>
+
+      <ul>
+      <% @trunk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :public_carrier_id, :include_blank => false, :readonly => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br />
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bridge %><br />
+    <%= f.text_field :bridge %>
+  </div>
+  <div class="field">
+    <%= f.label :weight%><br/>
+    <%= f.text_field :weight%>
+  </div>
+  <hr/>
+  <div class="field">
+    <%= f.label :sip_user %><br />
+    <%= f.text_field :sip_user %>
+  </div>
+  <div class="field">
+    <%= f.label :sip_pass %><br />
+    <%= f.text_field :sip_pass %>
+  </div>
+  <div class="field">
+    <%= f.label :authenticate %><br />
+    <%= f.check_box :authenticate %>
+  </div>
+  <hr/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

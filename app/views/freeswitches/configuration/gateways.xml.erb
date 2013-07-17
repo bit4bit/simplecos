@@ -1,17 +1,19 @@
 <% @freeswitch.sip_profiles.each do |sip_profile| %>
 <profile name="<%= sip_profile.name%>">
-	<!-- http://wiki.freeswitch.org/wiki/Sofia_Configuration_Files -->
-	<!-- This profile is only for outbound registrations to providers -->
-	<gateways>
- <% sip_profile.public_carriers.each do |carrier| %>
- <gateway name="<%= carrier.name%>">
-  <param name="username" value="<%= carrier.sip_user%>"/>
-  <param name="password" value="<%= carrier.sip_pass%>"/>
-  <param name="register" value="<%= carrier.authenticate%>"/>
-  <param name="realm" value="<%= carrier.realm%>"/>
+<!-- http://wiki.freeswitch.org/wiki/Sofia_Configuration_Files -->
+<!-- This profile is only for outbound registrations to providers -->
+<gateways>
+  <% sip_profile.public_carriers.each do |carrier| %>
+  <% carrier.trunks.each do |trunk| %>
+  <gateway name="<%= trunk.name%>">
+  <param name="username" value="<%= trunk.sip_user%>"/>
+  <param name="password" value="<%= trunk.sip_pass%>"/>
+  <param name="register" value="<%= trunk.authenticate%>"/>
+  <param name="realm" value="<%= trunk.realm%>"/>
 </gateway>
 <% end %>
-	</gateways>
+<% end %>
+</gateways>
 
 	<aliases>
 	  <!--

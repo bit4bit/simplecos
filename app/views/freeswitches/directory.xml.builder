@@ -32,7 +32,7 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                         xml.variable :name => 'user_originated', :value => 'true'
                         xml.variable :name => 'toll_allow', :value => 'domestic,international,local'
                         xml.variable :name => 'sip-allow-multiple-registrations', :value => 'false'
-                        xml.variable :name => 'default_gateway', :value => client.public_carrier.name
+                        xml.variable :name => 'default_gateway', :value => client.public_carrier.trunks.first.name
                         xml.variable :name => 'accountcode', :value => client.accountcode
                         xml.variable :name => 'effective_caller_id_number', :value => client.sip_user
                         xml.variable :name => 'effective_caller_id_name', :value => client.name

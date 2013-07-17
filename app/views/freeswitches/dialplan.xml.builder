@@ -123,7 +123,7 @@ xml.document :type => 'freeswitch/xml' do
                 if not cash_plan.bridge.empty?
                   xml.action :application => 'bridge', :data => cash_plan.bridge
                 else
-                  xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.name}/$1"
+                  xml.action :application => 'bridge', :data => "sofia/gateway/#{carrier.to_bridge}/$1"
                 end
               end
             end

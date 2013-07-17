@@ -78,6 +78,7 @@ es:
         ip: 'IP'
         port: 'Puerto'
         sip_profile_id: 'Perfil SIP'
+        trunks: 'Troncales'
   menu:
    quit: 'Salir'
    users: 'Usuarixs'
@@ -100,6 +101,8 @@ es:
       ip: 'IP'
       port: 'Puerto'
       sip_profile: 'Perfil SIP'
+      trunks: 'Troncales'
+      trunk: 'Troncal'
     index:
       title: 'Listando pasarelas externas'
     edit:

@@ -4,7 +4,6 @@
   ip: 10.0.0.1
   port: 5060
   authenticate: false
-  freeswitch_id: 1
   sip_profile_id: 1
 
 2:
@@ -15,7 +14,6 @@
   sip_user: user
   sip_pass: pass
   authenticate: true
-  freeswitch_id: 1
   sip_profile_id: 1
 
 3:
@@ -23,7 +21,6 @@
   name: Carrier3
   ip: 10.0.0.3
   port: 5060
-  freeswitch_id: 2
   sip_profile_id: 2
 
 4:
@@ -31,5 +28,4 @@
   name: Carrier3
   ip: 172.16.1.200
   port: 5060
-  freeswitch_id: 3
   sip_profile_id: 2

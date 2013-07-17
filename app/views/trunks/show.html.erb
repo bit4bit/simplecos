@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @trunk.name %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @trunk.ip %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%= @trunk.port %>
+</p>
+
+<p>
+  <b>Sip user:</b>
+  <%= @trunk.sip_user %>
+</p>
+
+<p>
+  <b>Sip pass:</b>
+  <%= @trunk.sip_pass %>
+</p>
+
+<p>
+  <b>Authenticate:</b>
+  <%= @trunk.authenticate %>
+</p>
+
+<p>
+  <b>Bridge:</b>
+  <%= @trunk.bridge %>
+</p>
+
+<p>
+  <b>Public carrier:</b>
+  <%= @trunk.public_carrier.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_trunk_path(@trunk) %> |
+<%= link_to 'Back', trunks_path(:public_carrier_id => @trunk.public_carrier.id) %>

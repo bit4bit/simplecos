@@ -134,6 +134,8 @@ class FreeswitchesController < ApplicationController
       configuration_nibblebill_curl
     elsif @data['section'] == 'configuration' and @data['key_value'] == 'xml_cdr.conf'
       configuration_xml_cdr
+    elsif @data['section'] == 'configuration' and @data['key_value'] == 'distributor.conf'
+      configuration_distributor
     else
       respond_to do |format|
         format.xml
@@ -151,6 +153,11 @@ class FreeswitchesController < ApplicationController
   
   def configuration_xml_cdr
     render :template => 'freeswitches/configuration/xml_cdr', :layout => 'fsxml/xml_curl'
+  end
+
+  def configuration_distributor
+    @public_carriers = PublicCarrier.all
+    render :template => 'freeswitches/configuration/distributor', :layout => 'fsxml/xml_curl'
   end
   
   #GET,POST

@@ -1,0 +1,15 @@
+1:
+ id: 1
+ name: trunk1
+ ip: 127.0.0.1
+ port: 5080
+ public_carrier_id: 1
+ weight: 1
+
+2:
+ id: 2
+ name: trunk1otro
+ ip: 127.0.0.1
+ port: 5080
+ public_carrier_id: 2
+ weight: 1

@@ -57,6 +57,7 @@ describe "Freeswitches" do
     fixtures :freeswitches 
     fixtures :sip_profiles
     fixtures :public_carriers
+    fixtures :trunks
 
     it "should be ok" do
       post "/configuration"
@@ -91,10 +92,12 @@ describe "Freeswitches" do
             profiles.should have_tag("profile", :name => sip_profile.name) do |profile|
               profile.should have_tag("gateways") do |gateways|
                 sip_profile.public_carriers.each do |public_carrier|
-                  gateways.should have_tag("gateway") do |gateway|
-                    gateway.should have_tag("param", :name => "username", :value => public_carrier.sip_user.to_s)
-                    gateway.should have_tag("param", :name => "password", :value => public_carrier.sip_pass.to_s)
-                    gateway.should have_tag("param", :name => "realm", :value => public_carrier.realm)
+                  public_carrier.trunks.each do |trunk|
+                    gateways.should have_tag("gateway") do |gateway|
+                      gateway.should have_tag("param", :name => "username", :value => trunk.sip_user.to_s)
+                      gateway.should have_tag("param", :name => "password", :value => trunk.sip_pass.to_s)
+                      gateway.should have_tag("param", :name => "realm", :value => trunk.realm)
+                    end
                   end
                 end
               end
@@ -109,6 +112,37 @@ describe "Freeswitches" do
       end
     end
     
+    context "configuration distributor.conf" do
+
+      it "should be ok" do
+        post "/configuration", {:section => 'configuration', :key_value => 'distributor.conf'}
+        response.status.should be(200)
+      end
+
+      it "should return xml" do
+        post "/configuration", {:section => 'configuration', :key_value => 'distributor.conf'}
+        response.status.should be(200)
+        print response.body
+        response.body.should have_tag("lists")
+
+      end
+
+      it "should return xml with nodes" do
+        post "/configuration", {:section => 'configuration', :key_value => 'distributor.conf'}
+        response.body.should have_tag("lists") do |lists|
+          PublicCarrier.all.each do |public_carrier|
+            lists.should have_tag("list", :name => public_carrier.name) do |list|
+              public_carrier.trunks.each do |trunk|
+                list.should have_tag("node", :name => trunk.name, :weight => trunk.weight.to_s)
+              end
+            end
+          end
+        end
+      end
+
+
+    end
+
     context "configuration nibblebill_curl.conf" do
       
       it "should be ok" do
@@ -195,7 +229,7 @@ describe "Freeswitches" do
     
   end
 
-  describe "POTS /xml_cdr" do
+  describe "POST /xml_cdr" do
     it "should be ok" do
       post xml_cdr_path
       response.status.should be(200)

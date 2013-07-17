@@ -1,0 +1,38 @@
+<h1>Listing trunks: <%= @public_carrier.name%></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Ip</th>
+    <th>Port</th>
+    <th>Sip user</th>
+    <th>Sip pass</th>
+    <th>Authenticate</th>
+    <th>Bridge</th>
+    <th>Public carrier</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trunks.each do |trunk| %>
+  <tr>
+    <td><%= trunk.name %></td>
+    <td><%= trunk.ip %></td>
+    <td><%= trunk.port %></td>
+    <td><%= trunk.sip_user %></td>
+    <td><%= trunk.sip_pass %></td>
+    <td><%= trunk.authenticate %></td>
+    <td><%= trunk.bridge %></td>
+    <td><%= trunk.public_carrier ? trunk.public_carrier.name : '' %></td>
+    <td><%= link_to 'Show', trunk %></td>
+    <td><%= link_to 'Edit', edit_trunk_path(trunk) %></td>
+    <td><%= link_to 'Destroy', trunk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= will_paginate @trunks%>
+<%= link_to 'New Trunk', new_trunk_path(:public_carrier_id => @public_carrier.id) %>

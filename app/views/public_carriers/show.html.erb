@@ -4,31 +4,6 @@
   <%= @public_carrier.name %>
 </p>
 
-<p>
-  <b><%= I18n.t('public_carrier.l.sip_user')%>:</b>
-  <%= @public_carrier.sip_user %>
-</p>
-
-<p>
-  <b><%= I18n.t('public_carrier.l.sip_pass')%>:</b>
-  <%= @public_carrier.sip_pass %>
-</p>
-
-<p>
-  <b><%= I18n.t('public_carrier.l.authenticate')%>:</b>
-  <%= @public_carrier.authenticate %>
-</p>
-
-<p>
-  <b><%= I18n.t('public_carrier.l.ip')%>:</b>
-  <%= @public_carrier.ip %>
-</p>
-
-<p>
-  <b><%= I18n.t('public_carrier.l.port')%>:</b>
-  <%= @public_carrier.port %>
-</p>
-
 
 <%= link_to I18n.t('edit'), edit_public_carrier_path(@public_carrier) %> |
 <%= link_to I18n.t('back'), public_carriers_path %>

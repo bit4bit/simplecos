@@ -6,6 +6,7 @@ class SipProfile < ActiveRecord::Base
   validates :rtp_ip, :presence => true
   validates :sip_ip, :presence => true
   validates :sip_port, :presence => true
+  validates :sip_port, :numericality => {:only_integer => true}
   validates :freeswitch_id, :presence => true
 
   has_many :public_carriers

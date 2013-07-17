@@ -55,7 +55,7 @@ Demonios
 Freeswitch
 ==========
 
- * Modulos: mod_nibblebill_curl, mod_xml_curl, mod_xml_cdr, mod_limit
+ * Modulos: mod_nibblebill_curl, mod_xml_curl, mod_xml_cdr, mod_limit, mod_distributor
  * Audios: {i18}/overthelimit.wav, {i18n}/no_more_funds.wav
 
 Configuracion

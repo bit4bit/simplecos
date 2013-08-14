@@ -1,0 +1,15 @@
+1:
+  id: 1
+  client_id: 1
+  sip_user: luis123
+  sip_pass: luis
+  max_calls: 1
+  proxy_media: ningun
+
+2:
+  id: 2
+  client_id: 2
+  sip_user: pedra
+  sip_pass: pedra
+  max_calls: 1
+  proxy_media: ningun

@@ -7,6 +7,7 @@ describe "Freeswitches" do
     fixtures :public_carriers
     fixtures :clients
     fixtures :client_cashes
+    fixtures :sip_clients
 
     it "should GET" do
       get "/bill/1"
@@ -85,7 +86,7 @@ describe "Freeswitches" do
 
       it "should return xml with profiles" do
         post "/configuration", {:section => 'configuration', :key_value => 'sofia.conf', 'FreeSWITCH-IPv4' => '127.0.0.1'}
-        print response.body
+
         freeswitch = Freeswitch.find_by_ip('127.0.0.1')
         response.body.should have_tag("profiles") do |profiles|
           freeswitch.sip_profiles.each do |sip_profile|
@@ -122,7 +123,6 @@ describe "Freeswitches" do
       it "should return xml" do
         post "/configuration", {:section => 'configuration', :key_value => 'distributor.conf'}
         response.status.should be(200)
-        print response.body
         response.body.should have_tag("lists")
 
       end
@@ -200,7 +200,13 @@ describe "Freeswitches" do
           param.should have_tag('param', :name => 'inbound-proxy-media', :value => 'false')
         end
       end
-      Client.all.each {|client| client.proxy_media = true; client.save(:validate => false)}
+      Client.all.each {|client| 
+        client.sip_clients.each {|sip_client|
+          sip_client.proxy_media = 'media'; 
+          sip_client.save(:validate => false)
+        }
+      }
+
 
       post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
       response.body.should have_tag('user') do |user|
@@ -217,7 +223,12 @@ describe "Freeswitches" do
           param.should have_tag('param', :name => 'inbound-bypass-media', :value => 'false')
         end
       end
-      Client.all.each {|client| client.bypass_media = true; client.save(:validate => false)}
+      Client.all.each {|client| 
+        client.sip_clients.each {|sip_client|
+          sip_client.proxy_media = 'bypass'; 
+          sip_client.save(:validate => false)
+        }
+      }
 
       post "/directory.xml", {'FreeSWITCH-IPv4' => '127.0.0.1', 'section'=>'directory', 'tag_name'=>'domain', 'key_name' => 'name'}
       response.body.should have_tag('user') do |user|

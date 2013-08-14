@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Client:</b>
+  <%= @sip_client.client.name %>
+</p>
+
+<p>
+  <b>Sip user:</b>
+  <%= @sip_client.sip_user %>
+</p>
+
+<p>
+  <b>Sip pass:</b>
+  <%= @sip_client.sip_pass %>
+</p>
+
+<p>
+  <b>Proxy media:</b>
+  <%= @sip_client.proxy_media %>
+</p>
+
+<p>
+  <b>Max calls:</b>
+  <%= @sip_client.max_calls %>
+</p>
+
+
+<%= link_to I18n.t('edit'), edit_sip_client_path(@sip_client) %> |
+<%= link_to I18n.t('back'), sip_clients_path(:client_id=>@sip_client.client.id) %>

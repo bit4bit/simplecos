@@ -4,6 +4,8 @@ Simplecos::Application.routes.draw do
 
 
 
+  resources :sip_clients
+
   resources :trunks
 
   resources :sip_profiles

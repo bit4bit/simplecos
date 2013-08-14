@@ -1,0 +1,6 @@
+<h1>Editing sip_client</h1>
+
+<%= render 'form' %>
+
+<%= link_to I18n.t('show'), @sip_client %> |
+<%= link_to I18n.t('back'), sip_clients_path(:client_id => @sip_client.client.id) %>

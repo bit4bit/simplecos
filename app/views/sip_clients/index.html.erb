@@ -1,0 +1,29 @@
+<h1><%= I18n.t('sip_clients.index.title')%> <%= @client.name %></h1>
+
+<table>
+  <tr>
+    <th>Sip user</th>
+    <th>Sip pass</th>
+    <th>Proxy media</th>
+    <th>Max calls</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sip_clients.each do |sip_client| %>
+  <tr>
+    <td><%= sip_client.sip_user %></td>
+    <td><%= sip_client.sip_pass %></td>
+    <td><%= sip_client.proxy_media %></td>
+    <td><%= sip_client.max_calls %></td>
+    <td><%= link_to I18n.t('show'), sip_client %></td>
+    <td><%= link_to I18n.t('edit'), edit_sip_client_path(sip_client) %></td>
+    <td><%= link_to I18n.t('destroy'), sip_client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sip client', new_sip_client_path(:client_id => @client.id) %>

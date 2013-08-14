@@ -222,3 +222,6 @@ es:
       subject: 'Sin balance'
     balance_in_email:
       subject: 'De nuevo con balance'
+  sip_clients:
+    index:
+      title: 'Cuentas SIP'

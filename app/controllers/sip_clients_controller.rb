@@ -76,10 +76,11 @@ class SipClientsController < ApplicationController
   # DELETE /sip_clients/1.json
   def destroy
     @sip_client = SipClient.find(params[:id])
+    @client = @sip_client.client
     @sip_client.destroy
 
     respond_to do |format|
-      format.html { redirect_to sip_clients_url }
+      format.html { redirect_to sip_clients_path(:client_id => @client.id) }
       format.json { head :no_content }
     end
   end

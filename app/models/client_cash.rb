@@ -1,5 +1,5 @@
 class ClientCash < ActiveRecord::Base
-  attr_accessible :amount, :client_id
+  attr_accessible :amount, :client_id, :created_at
   validates :client_id, :presence => true
   validates :amount, :numericality => {:only_integer => true}
   belongs_to :client

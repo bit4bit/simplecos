@@ -1,11 +1,12 @@
 class PublicCarrier < ActiveRecord::Base
-  attr_accessible :name, :sip_profile_id
+  attr_accessible :name, :sip_profile_id, :trunks_attributes
 
   validates :name, :presence => true
   validates :sip_profile_id, :presence => true
 
   has_many :public_cash_plans , :dependent => :destroy
   has_many :trunks
+  accepts_nested_attributes_for :trunks, :allow_destroy => true
   belongs_to :sip_profile
   belongs_to :freeswitch
   

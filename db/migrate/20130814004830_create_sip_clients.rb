@@ -1,7 +1,7 @@
 class CreateSipClients < ActiveRecord::Migration
   def change
     create_table :sip_clients do |t|
-      t.references :client_id
+      t.references :client
       t.string :sip_pass
       t.string :sip_user
       t.integer :max_calls
@@ -9,6 +9,6 @@ class CreateSipClients < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :sip_clients, :client_id_id
+    add_index :sip_clients, :client_id
   end
 end

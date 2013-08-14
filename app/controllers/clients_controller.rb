@@ -34,6 +34,7 @@ class ClientsController < ApplicationController
     end
 
     @client = Client.new(:accountcode => accountcode)
+    @client.sip_clients.build
     @carriers = PublicCarrier.all
     respond_to do |format|
       format.html # new.html.erb

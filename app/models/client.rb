@@ -7,18 +7,19 @@ class Client < ActiveRecord::Base
 
   has_many :client_cashs, :dependent => :destroy
   has_many :client_cash_plans, :dependent => :destroy
-
+  has_many :sip_clients, :dependent => :destroy
+  accepts_nested_attributes_for :sip_clients,:allow_destroy => true
   belongs_to :public_carrier
   validates :password, :presence => true, :on => :create
   validates :password_confirmation, :presence => true, :on => :create
 
   validates :name, :presence => true
   validates :public_carrier_id, :presence => true, :numericality => true
-  validates :max_calls, :presence => true, :numericality => true
   validates :accountcode, uniqueness: true
 
   devise :database_authenticatable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :sip_clients_attributes
+
   
   before_destroy { |record| Consumers::RequestCash.destroy_all :client_id => record.id}
   def total_amount

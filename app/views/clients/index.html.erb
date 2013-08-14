@@ -5,8 +5,6 @@
     <th><%= I18n.t('client.l.accountcode')%></th>
     <th><%= I18n.t('client.l.public_carrier')%></th>
     <th><%= I18n.t('client.l.name')%></th>
-    <th><%= I18n.t('client.l.sip_user')%></th>
-    <th><%= I18n.t('client.l.sip_pass')%></th>
     <th><%= I18n.t('client.l.balance')%></th>
     <th></th>
     <th></th>
@@ -18,8 +16,6 @@
     <td><%= client.accountcode%></td>
     <td><%= client.public_carrier.name if client.public_carrier %></td>
     <td><%= client.name %></td>
-    <td><%= client.sip_user %></td>
-    <td><%= client.sip_pass %></td>
     <td><%= client.balance %></td>
     <td><%= link_to I18n.t('show'), client %></td>
     <td><%= link_to I18n.t('edit'), edit_client_path(client) %></td>

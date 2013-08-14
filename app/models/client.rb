@@ -3,7 +3,7 @@ require 'digest/sha2'
 class Client < ActiveRecord::Base
   MAX_RANDOM_ACCOUNTCODE = 1000000
 
-  attr_accessible :balance, :name, :public_carrier_id, :sip_pass, :sip_user, :max_calls, :proxy_media, :bypass_media, :accountcode
+  attr_accessible :balance, :name, :public_carrier_id, :accountcode
 
   has_many :client_cashs, :dependent => :destroy
   has_many :client_cash_plans, :dependent => :destroy

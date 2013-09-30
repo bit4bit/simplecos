@@ -8,7 +8,7 @@ class PublicCarrier < ActiveRecord::Base
   has_many :trunks
   accepts_nested_attributes_for :trunks, :allow_destroy => true
   belongs_to :sip_profile
-  belongs_to :freeswitch
+
   
   def context
     '%s-context' % name

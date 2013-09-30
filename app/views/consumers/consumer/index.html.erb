@@ -6,20 +6,6 @@
 </p>
 
 <p>
-  <b><%= I18n.t('client.l.sip_user')%>:</b>
-  <%= current_consumers_client.sip_user%>
-</p>
-
-<p>
-  <b><%= I18n.t('client.l.sip_pass')%>:</b>
-  <%= current_consumers_client.sip_pass%>
-</p>
-
-<p>
-  <b><%= I18n.t('client.l.sip_server')%>:</b>
-  <%= current_consumers_client.public_carrier.freeswitch.ip%>
-</p>
-<p>
   <b><%= I18n.t('client.l.email')%>:</b>
   <%= current_consumers_client.email%>
 </p>
@@ -33,3 +19,32 @@
   <b><%= I18n.t('client.l.total_amount')%>:</b>
   <%= current_consumers_client.total_amount%>
 </p>
+
+<hr />
+
+
+<p>
+  <b><%= I18n.t('client.l.sip_server')%>:</b>
+  <%= current_consumers_client.public_carrier.sip_profile.sip_ip%>:<%= current_consumers_client.public_carrier.sip_profile.sip_port%>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <td><%= I18n.t('sip_clients.l.sip_user')%></td>
+      <td><%= I18n.t('sip_clients.l.sip_pass')%></td>
+      <td><%= I18n.t('sip_clients.l.caller_name')%></td>
+      <td><%= I18n.t('sip_clients.l.caller_number')%></td>
+    </tr>
+  </thead>
+  <tbody>
+<% current_consumers_client.sip_clients.each do |sip_client| %>
+<tr>
+  <td><%= sip_client.sip_user%></td>
+  <td><%= sip_client.sip_pass%></td>
+  <td><%= sip_client.caller_name%></td>
+  <td><%= sip_client.caller_number%></td>
+</tr>
+<% end %>
+</tbody>
+  </table>

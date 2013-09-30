@@ -92,6 +92,8 @@ es:
         proxy_media: 'Proxy Media'
         max_calls: 'Max canales'
         client: 'Cliente'
+        caller_name: 'Nombre en llamada'
+        caller_number: 'Número en llamada'
   menu:
    quit: 'Salir'
    users: 'Usuarixs'
@@ -231,6 +233,8 @@ es:
       subject: 'De nuevo con balance'
   sip_clients:
     l:
+      caller_name: 'Nombre en Llamada'
+      caller_number: 'Número en Llamada'
       sip_user: 'Cuenta SIP'
       sip_pass: 'Clave SIP'
       proxy_media: 'Proxy Media'

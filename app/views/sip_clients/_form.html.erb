@@ -15,6 +15,16 @@
     <%= f.hidden_field :client_id %>
   </div>
   <div class="field">
+    <%= f.label :caller_name %><br />
+    <%= f.text_field :caller_name %><br />
+  </div>
+  <div class="field">
+    <%= f.label :caller_number %><br />
+    <%= f.text_field :caller_number %><br />
+  </div>
+
+  <hr/>
+  <div class="field">
     <%= f.label :sip_user %><br />
     <%= f.text_field :sip_user %>
   </div>

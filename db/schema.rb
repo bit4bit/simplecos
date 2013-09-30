@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814005457) do
+ActiveRecord::Schema.define(:version => 20130930195424) do
 
   create_table "client_cash_plans", :force => true do |t|
     t.integer  "client_id"
@@ -133,8 +133,10 @@ ActiveRecord::Schema.define(:version => 20130814005457) do
     t.string   "sip_user"
     t.integer  "max_calls"
     t.string   "proxy_media"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "caller_name",   :default => ""
+    t.string   "caller_number", :default => "000000"
   end
 
   add_index "sip_clients", ["client_id"], :name => "index_sip_clients_on_client_id"

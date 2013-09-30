@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <b><%= I18n.t('sip_clients.l.caller_name')%>:</b>
+  <%= @sip_client.caller_name%>
+</p>
 
+<p>
+  <b><%= I18n.t('sip_clients.l.caller_number')%>:</b>
+  <%= @sip_client.caller_number%>
+</p>
 <p>
   <b><%= I18n.t('sip_clients.l.client')%>:</b>
   <%= @sip_client.client.name %>

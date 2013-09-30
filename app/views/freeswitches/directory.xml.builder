@@ -37,8 +37,8 @@ if @data['section'] == 'directory' and @data['tag_name'] == 'domain' and @data['
                           xml.variable :name => 'default_gateway', :value => client.public_carrier.trunks.first.name
                           #para cobro
                           xml.variable :name => 'accountcode', :value => client.accountcode
-                          xml.variable :name => 'effective_caller_id_number', :value => sip_client.sip_user
-                          xml.variable :name => 'effective_caller_id_name', :value => client.name
+                          xml.variable :name => 'effective_caller_id_number', :value => sip_client.caller_number
+                          xml.variable :name => 'effective_caller_id_name', :value => sip_client.caller_name
                           xml.variable :name => 'outbound_caller_id_name', :value => '$${outbound_caller_name}'
                           xml.variable :name => 'outbound_caller_id_number', :value => '$${outbound_caller_id_number}'
                           #para cobro

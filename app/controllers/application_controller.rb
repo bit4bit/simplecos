@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = exception.message
+    Rails.logger.debug(exception.message)
     if request.referer.nil?
       redirect_to root_url
     else

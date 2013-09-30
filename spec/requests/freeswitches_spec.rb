@@ -50,8 +50,13 @@ describe "Freeswitches" do
     
     it "should return fsxml" do
       post "/dialplan.xml", {'FreeSWITCH-IPv4' => '127.0.0.1'}
+      print response.body
+      response.body.should have_tag("section", "name" => "dialplan") do |section|
+        
+      end
     end
     
+
   end
   
   describe "POST /configuration.xml" do

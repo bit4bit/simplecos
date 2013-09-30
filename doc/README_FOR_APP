@@ -1,2 +1,5 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+Freeswitch
+==========
+Tuve inconvenientes con el freeswitch con multiples interfaces, la solucion fue
+agregar variable "force_local_ip_v4" y la interfaz de esta ip debe tener puerta de enlaze
+ya que si no la tiene cuando el xml_curl hace peticion envia la variable "FreeSWITCH-IPv4" "127.0.0.1" o de otra interfaz.

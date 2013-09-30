@@ -67,7 +67,8 @@ xml.document :type => 'freeswitch/xml' do
               xml.action :application => 'set', :data => "nibble_rate=#{client_cash_plan.bill_rate}"
               xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
               xml.action :application => 'set', :data => "accountcode=#{client.accountcode}"
-
+              xml.action :application => 'set', :data => "hangup_after_bridge=true"
+              
               if client_cash_plan.bill_minimum > 0
                 xml.action :application => 'set', :data => "nibble_increment=#{client_cash_plan.bill_minimum}"
               end
@@ -105,7 +106,9 @@ xml.document :type => 'freeswitch/xml' do
 #        end
 #      end
    
-      
+      #Tarificacion generica, o bien cuando el cliente
+      #no tiene asignado un plan de marcado
+
       @freeswitch.sip_profiles.each{|sip_profile|
         sip_profile.public_carriers.each{|carrier|
           break if stop_public_cash_plan
@@ -113,9 +116,13 @@ xml.document :type => 'freeswitch/xml' do
             xml.extension :name => 'simplecos_%d' % cash_plan.id do
               xml.condition :field => 'destination_number', :expression => cash_plan.expression do
                 #no se usa pero se envia por si algo
+                xml.action :application => 'export', :data => "simplecos_cash_plan=#{cash_plan.id}"
+                xml.action :application => 'export', :data => "nibble_rate=#{cash_plan.bill_rate}"
                 xml.action :application => 'set', :data => "simplecos_cash_plan=#{cash_plan.id}"
                 xml.action :application => 'set', :data => "nibble_rate=#{cash_plan.bill_rate}"
                 xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
+                xml.action :application => 'set', :data => "hangup_after_bridge=true"
+
                 if cash_plan.bill_minimum > 0
                   xml.action :application => 'set', :data => "nibble_increment=#{cash_plan.bill_minimum}"
                 end

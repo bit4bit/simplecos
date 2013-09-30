@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b><%= I18n.t('sip_clients.l.caller_name')%>:</b>
+  <%= @sip_client.caller_name%>
+</p>
+
+<p>
+  <b><%= I18n.t('sip_clients.l.caller_number')%>:</b>
+  <%= @sip_client.caller_number%>
+</p>
+<p>
+  <b><%= I18n.t('sip_clients.l.client')%>:</b>
+  <%= @sip_client.client.name %>
+</p>
+
+<p>
+  <b><%= I18n.t('sip_clients.l.sip_user')%>:</b>
+  <%= @sip_client.sip_user %>
+</p>
+
+<p>
+  <b><%= I18n.t('sip_clients.l.sip_pass')%>:</b>
+  <%= @sip_client.sip_pass %>
+</p>
+
+<p>
+  <b><%= I18n.t('sip_clients.l.proxy_media')%>:</b>
+  <%= @sip_client.proxy_media %>
+</p>
+
+<p>
+  <b><%= I18n.t('sip_clients.l.max_calls')%>:</b>
+  <%= @sip_client.max_calls %>
+</p>
+
+
+<%= link_to I18n.t('edit'), edit_consumers_sip_client_path(@sip_client) %> |
+<%= link_to I18n.t('back'), consumers_sip_clients_path() %>

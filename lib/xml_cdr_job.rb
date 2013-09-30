@@ -80,6 +80,7 @@ class XmlCdrJob
 
     {
       :account_id => account.to_i,
+      :sip_user => URI.decode(cdr['variables']['sip_from_user'].to_s),
       :signaling_ip => URI.decode(cdr['variables']['sip_network_ip'].to_s),
       :remote_media_ip => URI.decode(cdr['variables']['remote_media_ip'].to_s),
       :call_time => Time.at(URI.decode(cdr['variables']['start_epoch']).to_d).to_s,

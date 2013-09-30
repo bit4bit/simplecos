@@ -1,0 +1,46 @@
+<%= simple_form_for(@sip_client) do |f| %>
+  <% if @sip_client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sip_client.errors.count, "error") %> prohibited this sip_client from being saved:</h2>
+
+      <ul>
+      <% @sip_client.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :client_id %>
+  </div>
+  <div class="field">
+    <%= f.label :caller_name %><br />
+    <%= f.text_field :caller_name %><br />
+  </div>
+  <div class="field">
+    <%= f.label :caller_number %><br />
+    <%= f.text_field :caller_number %><br />
+  </div>
+
+  <hr/>
+  <div class="field">
+    <%= f.label :sip_user %><br />
+    <%= f.text_field :sip_user %>
+  </div>
+  <div class="field">
+    <%= f.label :sip_pass %><br />
+    <%= f.text_field :sip_pass %>
+  </div>
+  <div class="field">
+    <%= f.label :max_calls %><br />
+    <%= f.text_field :max_calls %>
+  </div>
+  <div class="field">
+    <%= f.label :proxy_media %><br />
+    <%= f.collection_radio_buttons :proxy_media, [['ningun','ningun'],['media','media'],['bypass','bypass']],:first, :last%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

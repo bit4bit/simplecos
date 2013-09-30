@@ -1,0 +1,5 @@
+<h1><%= I18n.t('sip_clients.new.title')%></h1>
+
+<%= render 'form' %>
+
+<%= link_to I18n.t('back'), consumers_sip_clients_path(:client_id => @sip_client.client_id) %>

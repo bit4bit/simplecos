@@ -19,6 +19,7 @@ Simplecos::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => 'users/registrations'}
   namespace :consumers do
     devise_for :clients, :controllers => {:registrations => 'consumers/registrations', :sessions => 'consumers/sessions'}
+    resources :sip_clients
     get "consumer/index"
     get "cdr/index"
     get "cdr/send_cdr", :as => :cdr_send

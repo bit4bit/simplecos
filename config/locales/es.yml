@@ -106,6 +106,7 @@ es:
    request_cash: 'Petición de recarga'
    cdr: 'CDR'
    sip_profiles: 'Perfiles SIP'
+   sip_clients: 'Cuentas SIP'
   public_carrier:
     l:
       freeswitch: 'Freeswitch'
@@ -244,6 +245,8 @@ es:
       title: 'Cuentas SIP'
     new:
       title: 'Nueva Cuenta SIP'
+    edit:
+      title: 'Editando Cuenta SIP'
   trunk:
     new:
       title: 'Nueva Troncal'

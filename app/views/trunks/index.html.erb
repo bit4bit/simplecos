@@ -1,4 +1,4 @@
-<h1>Listing trunks: <%= @public_carrier.name%></h1>
+<h1><%= I18n.t('trunk.index.title')%>: <%= @public_carrier.name%></h1>
 
 <table>
   <tr>
@@ -25,9 +25,9 @@
     <td><%= trunk.authenticate %></td>
     <td><%= trunk.bridge %></td>
     <td><%= trunk.public_carrier ? trunk.public_carrier.name : '' %></td>
-    <td><%= link_to 'Show', trunk %></td>
-    <td><%= link_to 'Edit', edit_trunk_path(trunk) %></td>
-    <td><%= link_to 'Destroy', trunk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to I18n.t('show'), trunk %></td>
+    <td><%= link_to I18n.t('edit'), edit_trunk_path(trunk) %></td>
+    <td><%= link_to I18n.t('destroy'), trunk, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
   </tr>
 <% end %>
 </table>
@@ -35,4 +35,4 @@
 <br />
 
 <%= will_paginate @trunks%>
-<%= link_to 'New Trunk', new_trunk_path(:public_carrier_id => @public_carrier.id) %>
+<%= link_to I18n.t('trunk.new.title'), new_trunk_path(:public_carrier_id => @public_carrier.id) %>

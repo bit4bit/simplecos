@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Client:</b>
+  <b><%= I18n.t('sip_clients.l.client')%>:</b>
   <%= @sip_client.client.name %>
 </p>
 
 <p>
-  <b>Sip user:</b>
+  <b><%= I18n.t('sip_clients.l.sip_user')%>:</b>
   <%= @sip_client.sip_user %>
 </p>
 
 <p>
-  <b>Sip pass:</b>
+  <b><%= I18n.t('sip_clients.l.sip_pass')%>:</b>
   <%= @sip_client.sip_pass %>
 </p>
 
 <p>
-  <b>Proxy media:</b>
+  <b><%= I18n.t('sip_clients.l.proxy_media')%>:</b>
   <%= @sip_client.proxy_media %>
 </p>
 
 <p>
-  <b>Max calls:</b>
+  <b><%= I18n.t('sip_clients.l.max_calls')%>:</b>
   <%= @sip_client.max_calls %>
 </p>
 

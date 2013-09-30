@@ -6,6 +6,7 @@ es:
   clone: 'Clonar'
   are_you_sure: 'Esta usted seguro(a)?'
   default: 'Por defecto'
+  created_at: 'Creado el'
   devise:
     failure:
       already_authenticated: 'Ya esta autenticado(a)'
@@ -85,6 +86,12 @@ es:
         port: 'Puerto'
         sip_profile_id: 'Perfil SIP'
         trunks: 'Troncales'
+      sip_client:
+        sip_user: 'Cuenta SIP'
+        sip_pass: 'Clave SIP'
+        proxy_media: 'Proxy Media'
+        max_calls: 'Max canales'
+        client: 'Cliente'
   menu:
    quit: 'Salir'
    users: 'Usuarixs'
@@ -223,5 +230,26 @@ es:
     balance_in_email:
       subject: 'De nuevo con balance'
   sip_clients:
+    l:
+      sip_user: 'Cuenta SIP'
+      sip_pass: 'Clave SIP'
+      proxy_media: 'Proxy Media'
+      max_calls: 'Max canales'
+      client: 'Cliente'
     index:
       title: 'Cuentas SIP'
+    new:
+      title: 'Nueva Cuenta SIP'
+  trunk:
+    new:
+      title: 'Nueva Troncal'
+    index:
+      title: 'Troncales'
+  sip_profile:
+    new:
+      title: 'Nuevo Perfil SIP'
+    index:
+      title: 'Perfiles SIP'
+    edit:
+      title: 'Editando Perfile SIP'
+    

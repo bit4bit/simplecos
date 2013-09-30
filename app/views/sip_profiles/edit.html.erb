@@ -1,6 +1,6 @@
-<h1>Editing sip_profile</h1>
+<h1><%= I18n.t('sip_profile.edit.title')%></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @sip_profile %> |
-<%= link_to 'Back', sip_profiles_path %>
+<%= link_to I18n.t('show'), @sip_profile %> |
+<%= link_to I18n.t('back'), sip_profiles_path %>

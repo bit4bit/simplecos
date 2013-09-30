@@ -7,6 +7,7 @@
 	<tr>
 	  <th><%= I18n.t('client_cash.l.client')%></th>
 	  <th><%= I18n.t('client_cash.l.amount')%></th>
+	  <th><%= I18n.t('created_at')%></td>
 	  <th></th>
 	  <th></th>
 	  <th></th>
@@ -16,6 +17,7 @@
 	<tr>
 	  <td><%= client_cash.client.nil? ? "" : client_cash.client.name %></td>
 	  <td><%= client_cash.amount %></td>
+	  <td><%= client_cash.created_at%></td>
 	  <td><%= link_to I18n.t('show'), client_cash %></td>
 	  <td><%= link_to I18n.t('edit'), edit_client_cash_path(client_cash) %></td>
 	  <td><%= link_to I18n.t('destroy'), client_cash, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>

@@ -27,6 +27,7 @@ class PublicCarriersController < ApplicationController
   # GET /public_carriers/new.json
   def new
     @public_carrier = PublicCarrier.new
+    @public_carrier.trunks.build
     @freeswitches = Freeswitch.all
     respond_to do |format|
       format.html # new.html.erb

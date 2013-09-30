@@ -2,10 +2,10 @@
 
 <table>
   <tr>
-    <th>Sip user</th>
-    <th>Sip pass</th>
-    <th>Proxy media</th>
-    <th>Max calls</th>
+    <th><%= I18n.t('sip_clients.l.sip_user')%></th>
+    <th><%= I18n.t('sip_clients.l.sip_pass')%></th>
+    <th><%= I18n.t('sip_clients.l.proxy_media')%></th>
+    <th><%= I18n.t('sip_clients.l.max_calls')%></th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Sip client', new_sip_client_path(:client_id => @client.id) %>
+<%= link_to I18n.t('sip_clients.new.title'), new_sip_client_path(:client_id => @client.id) %>

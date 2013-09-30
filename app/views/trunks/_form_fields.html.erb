@@ -1,0 +1,39 @@
+  <div class="field">
+    <%= f.hidden_field :public_carrier_id, :include_blank => false, :readonly => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br />
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bridge %><br />
+    <%= f.text_field :bridge %>
+  </div>
+  <div class="field">
+    <%= f.label :weight%><br/>
+    <%= f.text_field :weight%>
+  </div>
+  <hr/>
+  <div class="field">
+    <%= f.label :sip_user %><br />
+    <%= f.text_field :sip_user %>
+  </div>
+  <div class="field">
+    <%= f.label :sip_pass %><br />
+    <%= f.text_field :sip_pass %>
+  </div>
+  <div class="field">
+    <%= f.label :authenticate %><br />
+    <%= f.check_box :authenticate %>
+  </div>
+  <hr/>

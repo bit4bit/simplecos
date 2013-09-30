@@ -1,4 +1,4 @@
-<h1>Listing sip_profiles</h1>
+<h1><%= I18n.t('sip_profile.index.title')%></h1>
 
 <table>
   <tr>
@@ -23,13 +23,13 @@
     <td><%= sip_profile.sip_ip %></td>
     <td><%= sip_profile.sip_port %></td>
     <td><%= sip_profile.freeswitch.name %></td>
-    <td><%= link_to 'Show', sip_profile %></td>
-    <td><%= link_to 'Edit', edit_sip_profile_path(sip_profile) %></td>
-    <td><%= link_to 'Destroy', sip_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to I18n.t('show'), sip_profile %></td>
+    <td><%= link_to I18n.t('edit'), edit_sip_profile_path(sip_profile) %></td>
+    <td><%= link_to I18n.t('destroy'), sip_profile, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Sip profile', new_sip_profile_path %>
+<%= link_to I18n.t('sip_profile.new.title'), new_sip_profile_path %>

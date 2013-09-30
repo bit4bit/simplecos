@@ -72,7 +72,7 @@ es:
         public_carrier_id: 'Pasarela Externa'
         expression: 'Regexp Freeswitch'
         bill_rate: 'Facturación por unidad'
-        bill_minimum: 'Facturación minima'
+        bill_minimum: 'Facturación minima (seg)'
         bridge: 'Bridge'
         name: 'Nombre'
         note: 'Notas'

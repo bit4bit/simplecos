@@ -5,6 +5,7 @@
     <th><%= I18n.t('public_cash_plan.l.public_carrier')%></th>
     <th><%= I18n.t('public_cash_plan.l.name')%></th>
     <th><%= I18n.t('public_cash_plan.l.bill_rate')%></th>
+    <th><%= I18n.t('public_cash_plan.l.bill_minimum')%></th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%=  public_cash_plan.name.empty? ? public_cash_plan.expression : public_cash_plan.name; %>
     </td>
     <td><%= public_cash_plan.bill_rate %></td>
+    <td><%= public_cash_plan.bill_minimum%></td>
     <td><%= link_to I18n.t('show'), public_cash_plan %></td>
     <td><%= link_to I18n.t('edit'), edit_public_cash_plan_path(public_cash_plan) %></td>
     <td><%= link_to I18n.t('destroy'), public_cash_plan, method: :delete, data: { confirm: I18n.t('are_you_sure') } %></td>

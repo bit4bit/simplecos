@@ -1,4 +1,4 @@
-SimpleCos
+SimpleCos v2.0
 ========
 
 SimpleCos es un sencillo aplicativo de software para tarificar

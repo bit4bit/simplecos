@@ -204,7 +204,7 @@
 
             <ul class="links">
 	      <li><%= link_to I18n.t("menu.dashboard"), consumers_consumer_index_path%></li>
-	      <li><%= link_to I18n.t("menu.sip_clients"), consumers_sip_clients_path%></li>
+	      <li><%= link_to I18n.t("menu.sip_clients"), consumers_sip_clients_path if current_consumers_client.allow_admin_sip_accounts?%></li>
 	      <li><%= link_to I18n.t('menu.request_cash'), consumers_request_cashes_path%></li>
 	      <li><%= link_to I18n.t('menu.cdr'), consumers_cdr_index_path%></li>
             </ul>

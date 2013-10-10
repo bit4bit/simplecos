@@ -86,4 +86,14 @@ class Consumers::SipClientsController < Consumers::ApplicationController
       format.json { head :no_content }
     end
   end
+
+  before_filter :allow_admin_sip_accounts
+  private
+  def allow_admin_sip_accounts
+    unless current_consumers_client.allow_admin_sip_accounts?
+      flash[:error] = I18n.t('not_allow_admin_sip_accounts')
+      redirect_to session['consumers_client_return_to']
+    end
+  end
+  
 end

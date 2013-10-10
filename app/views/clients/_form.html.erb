@@ -38,6 +38,10 @@
     <%= f.password_field :password_confirmation %>
   </div>
   <hr />
+  <div class="field">
+    <%= f.label :allow_admin_sip_accounts %><br />
+    <%= f.input :allow_admin_sip_accounts, as: :boolean %>
+  </div>
   <%= f.fields_for :sip_clients do |sf| %>
   
   <div class="field">

@@ -3,7 +3,7 @@ require 'digest/sha2'
 class Client < ActiveRecord::Base
   MAX_RANDOM_ACCOUNTCODE = 1000000
 
-  attr_accessible :balance, :name, :public_carrier_id, :accountcode
+  attr_accessible :balance, :name, :public_carrier_id, :accountcode, :allow_admin_sip_accounts
 
   has_many :client_cashs, :dependent => :destroy
   has_many :client_cash_plans, :dependent => :destroy
@@ -28,4 +28,9 @@ class Client < ActiveRecord::Base
     total
   end
   
+  def allow_admin_sip_accounts?
+    allow_admin_sip_accounts>0 ? true : false
+  end
+  
+
 end

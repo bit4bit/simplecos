@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930195424) do
+ActiveRecord::Schema.define(:version => 20131010175431) do
 
   create_table "client_cash_plans", :force => true do |t|
     t.integer  "client_id"
@@ -35,27 +35,8 @@ ActiveRecord::Schema.define(:version => 20130930195424) do
 
   add_index "client_cashes", ["client_id"], :name => "index_client_cashes_on_client_id"
 
-  create_table "clients", :force => true do |t|
-    t.string   "name"
-    t.string   "hashed_password"
-    t.integer  "public_carrier_id"
-    t.float    "balance",                :default => 0.0
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.string   "salt",                   :default => ""
-    t.string   "email",                  :default => "",  :null => false
-    t.string   "encrypted_password",     :default => "",  :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.integer  "max_calls",              :default => 1
-    t.integer  "accountcode"
-  end
+# Could not dump table "clients" because of following StandardError
+#   Unknown type 'bool' for column 'allow_admin_sip_accounts'
 
   create_table "consumers_request_cashes", :force => true do |t|
     t.integer  "client_id"

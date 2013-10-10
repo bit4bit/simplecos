@@ -7,6 +7,8 @@ es:
   are_you_sure: 'Esta usted seguro(a)?'
   default: 'Por defecto'
   created_at: 'Creado el'
+  'yes': 'Si'
+  'no': 'No'
   devise:
     failure:
       already_authenticated: 'Ya esta autenticado(a)'
@@ -56,6 +58,7 @@ es:
         proxy_media: 'Proxy Media(RTP)'
         bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
         accountcode: 'Codigo de cuenta'
+        allow_admin_sip_accounts: 'Administrar sus cuentas SIP?'
       client_cash:
         client_id: 'Cliente'
         amount: 'Dinero'
@@ -169,6 +172,7 @@ es:
       bypass_media: 'Bypass Media(RTP)(Solo Señalización)'
       mode_media: 'Media'
       accountcode: 'Codigo de cuenta'
+      allow_admin_sip_accounts: 'Administrar sus cuentas SIP?'
     new:
       title: 'Nuevx cliente'
     index:

@@ -47,7 +47,7 @@ class ClientsController < ApplicationController
     @carriers = PublicCarrier.all
     
     @client = Client.new(params[:client])
-
+    @client.salt = SecureRandom.hex
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }

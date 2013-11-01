@@ -8,7 +8,7 @@
 	  <th><%= I18n.t('cdr.l.cdr_months')%></th>
 	</tr>
 	  <% @cdr_months.each do |month_file| %>
-	<tr><td><%= link_to File.basename(month_file).gsub(/month_|day_|week_/,''), consumers_cdr_send_path({:file =>File.basename(month_file)})%></td></tr>
+	<tr><td><%= link_to month_file[:title], consumers_cdr_send_path({:id => month_file[:crypt]})%></td></tr>
 	  <% end %>
       </table>
     </td>
@@ -19,7 +19,7 @@
 	  <th><%= I18n.t('cdr.l.cdr_weeks')%></th>
 	</tr>
 	  <% @cdr_weeks.each do |week_file| %>
-	<tr><td><%= link_to File.basename(week_file).gsub(/month_|day_|week_/,''), consumers_cdr_send_path({:file =>File.basename(week_file)})%></td></tr>
+	<tr><td><%= link_to week_file[:title], consumers_cdr_send_path({:id => week_file[:crypt]})%></td></tr>
 	  <% end %>
       </table>
     </td>
@@ -30,7 +30,7 @@
 	  <th><%= I18n.t('cdr.l.cdr_days')%></th>
 	</tr>
 	  <% @cdr_days.each do |day_file| %>
-	<tr><td><%= link_to File.basename(day_file).gsub(/month_|day_|week_/,''), consumers_cdr_send_path({:file => File.basename(day_file)})%></td></tr>
+	<tr><td><%= link_to day_file[:title], consumers_cdr_send_path({:id => day_file[:crypt]})%></td></tr>
 	  <% end %>
       </table>
     </td>

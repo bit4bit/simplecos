@@ -29,19 +29,20 @@ xml.document :type => 'freeswitch/xml' do
       stop_public_cash_plan = false
       #@todo no llega la variable en algunos servidores
       #simplecos_account = params['variable_simplecos_account']
+
       begin
-        client = Client.where(:sip_user => params['variable_sip_from_user']).select(:id).first
+        client = SipClient.where(:sip_user => @data['variable_sip_from_user']).first
+
         if client
-          simplecos_account = client.id
+          simplecos_account = client
         else
           simplecos_account = 0
         end
       rescue Exception => e
         simplecos_account = 0
       end
-      
 
-      if Client.exists?(simplecos_account)
+      if Client.exists?(simplecos_account.client_id)
         #se fuerza, el cuelge en caso de no tener fondos
         #aunque esto se deberia realizar desde *nibblebill_curl*
         if Client.find(simplecos_account).balance < 1
@@ -54,8 +55,10 @@ xml.document :type => 'freeswitch/xml' do
           end
         end
         
-        client = Client.find(simplecos_account)
+        client = Client.find(simplecos_account.client_id)
+
         ClientCashPlan.where(:client_id => client).all.each do |client_cash_plan|
+
           stop_public_cash_plan = true
           xml.extension :name => 'simplecos_%d_client' % client_cash_plan.public_carrier_id do
             xml.condition :field => 'destination_number', :expression => client_cash_plan.expression do
@@ -65,10 +68,12 @@ xml.document :type => 'freeswitch/xml' do
               xml.action :application => 'export', :data => "accountcode=#{client.accountcode}"
               xml.action :application => 'set', :data => "simplecos_client_cash_plan=#{client_cash_plan.id}"
               xml.action :application => 'set', :data => "nibble_rate=#{client_cash_plan.bill_rate}"
-              xml.action :application => 'set', :data => 'nibble_account=${user_data(${caller_id_number}@${domain_name} var nibble_account)}'
+              xml.action :application => 'set', :data => "nibble_account=#{simplecos_account.client_id}"
               xml.action :application => 'set', :data => "accountcode=#{client.accountcode}"
               xml.action :application => 'set', :data => "hangup_after_bridge=true"
-              
+              xml.action :application => 'set', :data => "effective_caller_id_name=#{simplecos_account.caller_name}"
+              xml.action :application => 'set', :data => "effective_caller_id_number=#{simplecos_account.caller_number}"
+
               if client_cash_plan.bill_minimum > 0
                 xml.action :application => 'set', :data => "nibble_increment=#{client_cash_plan.bill_minimum}"
               end

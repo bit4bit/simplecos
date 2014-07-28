@@ -91,6 +91,7 @@ class FreeswitchesController < ApplicationController
     authenticate_freeswitch_by_ip
     logger.debug("Dialplan quest:%s" %params.to_s)
     @freeswitch = Freeswitch.find_by_ip(params['FreeSWITCH-IPv4'])
+    @data = params
     if @freeswitch
       respond_to do |format|
         format.xml
@@ -110,10 +111,12 @@ class FreeswitchesController < ApplicationController
     @data = params
     if @data['purpose'] == 'gateways'
       directory_gateways
-    else
+    elsif @data['sip_auth_method'] == 'REGISTER'
       respond_to do |format|
         format.xml
       end
+    else
+      render :template => 'freeswitches/not_response'
     end
   end
   

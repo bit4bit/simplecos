@@ -15,7 +15,7 @@
 
 <p>
   <b><%= I18n.t('client.l.allow_admin_sip_accounts')%>:</b>
-  <%= I18n.t(@client.allow_admin_sip_accounts>0 ? 'yes' : 'no' )%>
+  <%= I18n.t(@client.allow_admin_sip_accounts ? 'yes' : 'no' )%>
 </p>
 <% @client.sip_clients.each do |sip| %>
 <p>

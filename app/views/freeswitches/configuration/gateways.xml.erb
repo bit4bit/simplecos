@@ -39,8 +39,8 @@
 	  <param name="dialplan" value="XML"/>
 	  <param name="context" value="public"/>
 	  <param name="dtmf-duration" value="2000"/>
-	  <param name="inbound-codec-prefs" value="$${global_codec_prefs}"/>
-	  <param name="outbound-codec-prefs" value="$${outbound_codec_prefs}"/>
+	  <param name="inbound-codec-prefs" value="<%= sip_profile.inbound_codec%>"/>
+	  <param name="outbound-codec-prefs" value="<%= sip_profile.outbound_codec%>"/>
 	  <param name="hold-music" value="$${hold_music}"/>
 	  <param name="rtp-timer-name" value="soft"/>
 	  <!--<param name="enable-100rel" value="true"/>-->
